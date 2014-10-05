@@ -30,7 +30,3 @@ bower install
 * suche zeichnet favoriten, das darf nicht sein
 * nach neuer suche kann zwar ein favorit erstellt werden, es speichert aber daten der vorherigen suche
 
-# Licence
-
-I have no fucking clue license
-
