@@ -1,0 +1,25 @@
+{
+  	"version": "0.1",
+	"name": "SBBapp",
+	"description": "Swiss train schedule (SBB/CFS/FFS)",
+	"launch_path": "/index.html",
+	"type": "web",
+	"permissions": {
+		"storage": {
+			"description": "will store las searched connections"
+		}
+	},
+	"developer": {
+		"name": "Peponi",
+		"url": "github.com/peponi"
+	},
+	"default_locale": "en",
+	"icons": {
+		"60": "/images/icon_60.png",
+		"128": "/images/icon_128.png"
+	},
+	"installs_allowed_from": ["*"],
+	"orientation": ["portrait"],
+	"chrome": { "navigation": true }
+	
+}

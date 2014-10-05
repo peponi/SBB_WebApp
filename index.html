@@ -1,0 +1,165 @@
+<!DOCTYPE html >
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <title>SBB / CFF / FSS</title>
+  <!-- Building blocks -->
+  <link rel="stylesheet" href="bower_components/building-blocks/style/action_menu.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style/buttons.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style/headers.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style/input_areas.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style/status.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/drawer.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/lists.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="bower_components/building-blocks/icons/styles/action_icons.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/icons/styles/settings_icons.css">
+
+  <!-- Transitions -->
+  <link rel="stylesheet" href="bower_components/building-blocks/transitions.css">
+  
+  <!-- Util CSS: some extra tricks -->
+  <link rel="stylesheet" href="bower_components/building-blocks/util.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/fonts.css">
+
+  <!-- Additional markup to make Building Blocks kind of cross browser -->
+  <link rel="stylesheet" href="bower_components/building-blocks/cross_browser.css">
+
+  <link rel="stylesheet" href="css/app.css">
+
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/moment/min/moment-with-locales.min.js"></script>
+</head>
+<body>
+  <section id="index" data-position="current">
+    <section data-type="sidebar">
+      <header>
+        <menu type="toolbar">
+          <a href="#">Done</a>
+        </menu>
+        <h1>Menu</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="#" data-fav-current-search>+ save current search param</a></li>
+        </ul>
+        <h2>Favorit Connections</h2>
+        <ul id="favorits">
+        </ul>
+      </nav>
+    </section>
+
+    <section id="drawer" role="region">
+      <header class="fixed">
+        <a href="#"><span class="icon icon-menu">hide sidebar</span></a>
+        <a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+        <h1>SBB-CFF-FSS</h1>
+        <a href="#" data-show-form><span class="icon action-icon back active">search</span></a>
+      </header>
+      <article class="content scrollable header">
+
+      	<form>
+        <p>
+		    	<input type="text" name="from" placeholder="from" required autocomplete="on" list="from-list">
+		    	<button type="reset">Clear</button>
+		    	<datalist id="from-list">
+ 					<option value="Zürich">Zürich</option>
+ 					<option value="Biel">Biel</option>
+ 					<option value="Bern">Bern</option>
+ 				</datalist>
+		  	</p>
+		  	<p>
+		    	<input type="text" name="to" placeholder="to" required autocomplete="on" list="to-list">
+		    	<button type="reset">Clear</button>
+		    	<datalist id="to-list">
+ 					<option value="Zürich">Zürich</option>
+ 					<option value="Biel">Biel</option>
+ 					<option value="Bern">Bern</option>
+ 				</datalist>
+		  	</p>
+		  	<p>
+          <label for="departure">departure</label>
+		    	<input type="time" name="departure" id="departure" placeholder="departure">
+		    	<button type="reset">Clear</button>
+		  	</p>
+		  	<p>
+          <label for="arrival">arrival</label>
+		    	<input type="time" name="arrival" id="arrival" placeholder="arrival">
+		    	<button type="reset">Clear</button>
+		  	</p>
+		  	
+		</form>
+        <div data-type="list">
+          <ul id="connections">
+            <li>
+              <a id="btn-buttons" href="#">
+                <p>dings</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section> <!-- end drawer -->
+  </section> <!-- end index -->
+
+  <!--···························· detailView ····························-->
+  <section role="region" id="detailView" data-position="right">
+    <header class="fixed">
+      <a id="btn-back" href="#"><span class="icon icon-back">back</span></a>
+      <h1>List</h1>
+    </header>
+
+    <article class="content-10 scrollable header">
+      <header>
+        <div class="grid">
+          
+        </div>
+      </header>
+      <section id="sections">
+        
+      </section>
+
+    </article>
+  </section>
+  <section role="status">
+  </section>
+  
+  <script type="text/javascript" defer src="bower_components/building-blocks/js/status.js"></script>
+  <script type="text/javascript" defer src="js/basil.min.js"></script>
+  <script type="text/javascript" defer src="js/viewModel.js"></script>
+  <script type="text/javascript" defer src="js/app.js"></script>
+
+  <script>
+    /*var mobile = (navigator.userAgent.search("Mobile") != -1);
+    if ( mobile ) {
+      //Let's reduce font-size when in landscape  
+      //fs: current font-size
+      var fs = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue( 'font-size' ), 10);
+      var mql = window.matchMedia("(orientation: portrait)");
+
+      if(mql.matches) { //portrait
+        document.documentElement.style.fontSize = fs + 'px';
+        document.body.classList.remove('landscape');
+      } else { // landscape
+        document.documentElement.style.fontSize = fs * 0.7 + 'px';
+        document.body.classList.add('landscape');
+      }
+
+      mql.addListener(function(m) {
+        if(m.matches) { //portrait
+          document.documentElement.style.fontSize = fs + 'px';
+          document.body.classList.remove('landscape');
+        }
+        else { //landscape
+          document.documentElement.style.fontSize = fs * 0.7 + 'px';
+          document.body.classList.add('landscape');
+        }
+      });
+    }*/
+  </script>
+</body>
+</html>
+

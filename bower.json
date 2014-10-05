@@ -1,0 +1,30 @@
+{
+  "name": "SBBapp",
+  "version": "0.0.1",
+  "description": "swiss train schedule (SBB/CFF/FSS)",
+  "main": "index.html",
+  "keywords": [
+    "SBB",
+    "CFS",
+    "FFS",
+    "swiss",
+    "train",
+    "schdule",
+    "webapp"
+  ],
+  "authors": [
+    "Peponi"
+  ],
+  "license": "GPL3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "building-blocks": "~1.3.1",
+    "moment": "~2.8.2"
+  }
+}

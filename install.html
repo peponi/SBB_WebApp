@@ -1,0 +1,39 @@
+<html >
+<head>
+	<title></title>
+
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+	<style>
+	.edit{width: 100px;margin-left:20px;}
+	</style>
+</head>
+<body>
+	<h3>install test 7</h3>
+	<!-- <input type="button" onclick="window.navigator.mozApps.install('http://multimedia/webapp_test/manifest.webapp')" value="App install"> -->
+	<form id="install">
+	        <button style="height:150px; width:150px; font-size:34px;">Install</button>        
+	</form>
+
+<script>
+
+function install(){
+        navigator.mozApps.install("http://192.168.0.4:8080/manifest.webapp");
+        return false;
+}
+document.getElementById("install").onsubmit = install;
+
+
+
+</script>
+
+</body>
+
+
+</body>
+</html>
+
+<script>
+
+
+</script>
