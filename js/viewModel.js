@@ -41,17 +41,17 @@ var viewModel = function()
 			var name = (Obj.journey)?Obj.journey.name:'';
 
 			$("#sections").append('\
-				<div class="grid header">\
+				<div class="grid header" data-show-passlist data-id="'+i+'">\
 					<h2 class="col-1-3">'+Obj.departure.location.name+'</h2>\
 					<h2 class="col-1-3 ">'+name+'</h2>\
 					<h2 class="col-1-3"> '+Obj.arrival.location.name+'</h2>\
 				</div>\
-				<div class="grid f-14">\
+				<div class="grid f-14 arrival">\
 					<h2 class="col-1-3">Abfahrt</h2>\
 					<h2 class="col-1-3">'+moment(Obj.departure.departure).format('H:mm')+'</h2>\
 					<h2 class="col-1-3"><span>Steig</span> '+Obj.departure.platform+'</h2>\
 				</div>\
-				<div class="grid f-14">\
+				<div class="grid f-14 departure">\
 					<h2 class="col-1-3">Ankunft</h2>\
 					<h2 class="col-1-3">'+moment(Obj.arrival.arrival).format('H:mm')+'</h2>\
 					<h2 class="col-1-3"><span>Steig</span> '+Obj.arrival.platform+'</h2>\
@@ -60,6 +60,37 @@ var viewModel = function()
 
 	  	document.querySelector('#detailView').className = 'current';
 	  	document.querySelector('[data-position="current"]').className = 'left';		
+	};
+
+	self.togglePasslist = function(id)
+	{
+		var passList = self.currObj.sections[id].journey.passList,
+			html = '',
+			$sectionPassList = $("#sections div[data-id="+id+"]").next(".arrival");
+
+		if($sectionPassList.find("div.passlist").length)
+		{
+			$sectionPassList.find("div.passlist").slideToggle();
+		}
+		else
+		{		
+			for(i = 1; i < passList.length; i++)
+			{
+				var station		= passList[i].station.name,
+					arrival		= moment(passList[i].arrival).format('H:mm'),
+					departure	= moment(passList[i].departure).format('H:mm');
+
+					departure 	= (departure == 'Invalid date')? '' : departure; 
+
+				html += '<div class="grid f-14 pass">\
+							<h2 class="col-1-3">'+station+'</h2>\
+							<h2 class="col-1-3"><span>Abf.</span> '+arrival+'</h2>\
+							<h2 class="col-1-3"><span>Ank.</span> '+departure+'</h2>\
+						</div>';
+			}
+
+			$sectionPassList.append('<div class="passlist">'+html+'</div>');
+		}
 	};
 
 	self.search = function(from,to)

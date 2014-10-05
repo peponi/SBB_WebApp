@@ -47,6 +47,11 @@ $("body").on("click",'[data-target=detail-view] a',function(e)
 	v.showDetail(id);
 });
 
+$("#sections").on("click",'[data-show-passlist] h2',function(e)
+{
+	v.togglePasslist(e.target.parentNode.dataset.id);
+});
+
 // favorit current connection data
 $("nav a[data-fav-current-search]").on("click",function(e)
 {

@@ -233,11 +233,18 @@ input[type=time]
   text-decoration: none;
 }
 
+div.passlist {margin: 10px 0px;}
+div.passlist > div
+{
+  border-bottom: 1px solid #ddd;
+
+}
+
 /* detailView */
 
 .f-14 h2 {font-size: 14px;}
-.f-14 h2:first-child{color:gray;}
-.f-14 h2:last-child span{color:gray;}
+.f-14 h2:first-child,
+.f-14 h2 span{color:gray;}
 
 .content-10
 {

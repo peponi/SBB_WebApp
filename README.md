@@ -18,8 +18,7 @@ bower install
 
 # Todo
 
-* passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android)
-* detailsView > passlist accordion
+* passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
 * product colors > SBB red, bus blue, etc
 * replace Basil.js (what a crap)
 * replace jQuery
