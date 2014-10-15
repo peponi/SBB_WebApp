@@ -78,6 +78,8 @@ module.exports = function(grunt) {
             'bower_components/building-blocks/cross_browser.css',
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/moment/min/moment-with-locales.min.js',
+            'http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
+            'http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css',
             'js/basil.min.js',
             'build/app.min.css',
             'build/app.min.js',

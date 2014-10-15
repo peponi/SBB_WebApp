@@ -120,19 +120,20 @@ var viewModel = function()
 			
 			var Obj = self.currConnections[i];
 
-			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm');
-			var duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm');
+			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm'),
+				duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm'),
+				rail_nr = (Obj.from.platform)?'Gleis '+Obj.from.platform:'<i class="fa fa-bus"></i>';
 
 			//Obj.products.toString()
 
 			$connections.append('\
 			<li data-target="detail-view">\
 			    <aside class="pack-end">\
-			        <small>Gleis '+Obj.from.platform+'</small>\
+			        <small>'+rail_nr+'</small>\
 			    </aside>\
 				<a href="#" data-id="'+Obj.id+'">\
 					<p>'+Obj.from.station.name+' <small>('+duration+' h)</small></p>\
-					<p>'+departure+' - '+Obj.sections.length+' <small>Umsteigen</small></p>\
+					<p><i class="ion-clock"></i> '+departure+' - '+Obj.sections.length+' <small>Umsteigen</small></p>\
 				</a>\
 			</li>');
 		};
