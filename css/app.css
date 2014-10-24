@@ -22,7 +22,6 @@ section[role="region"] > header:first-child .icon.icon-menu {
 
 /* --- icons --- */
 
-
 i.icon
 {
   position: absolute;
@@ -36,6 +35,7 @@ i.i-bus
 {
   background-image: url(../images/bus.png);
   top: 15px;
+  right:15px;
 }
 i.i-clock
 {

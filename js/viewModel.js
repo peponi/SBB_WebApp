@@ -36,7 +36,7 @@ var viewModel = function()
 
 		while(sections.firstChild) sections.removeChild(sections.firstChild);
 		
-		for (var i = self.currObj.sections.length; i--;) 
+		for (var i = 0, j = self.currObj.sections.length; i < j; i++) 
 		{
 			var Obj = self.currObj.sections[i];
 			var name = (Obj.journey)?Obj.journey.name:'';

@@ -2,8 +2,7 @@ v = new viewModel();
 
 function serach()
 {
-	var v 		= new viewModel(),
-		form 	= $("form"),
+	var form 	= $("form"),
 		from 	= form.find("[name=from]").val(),
 		to 		= form.find("[name=to]").val();
 
