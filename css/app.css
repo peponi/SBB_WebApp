@@ -1,13 +1,51 @@
 /* --- overwrites --- */
 
-section[role="region"] > header:first-child{
-  background-color: #B20000
+section[role="region"] > header:first-child,
+section[role="region"] > header:first-child > a:not([aria-disabled="true"]):active:after,
+section[role="region"] > header:first-child > button:not(:disabled):active:after,
+section[role="region"] > header:first-child > a:not([aria-disabled="true"]):hover:after,
+section[role="region"] > header:first-child > button:not(:disabled):hover:after,
+section[role="region"] > header:first-child menu[type="toolbar"] a:not([aria-disabled="true"]):hover,
+section[role="region"] > header:first-child menu[type="toolbar"] button:not(:disabled):hover,
+section[role="region"] > header:first-child menu[type="toolbar"] a:not([aria-disabled="true"]):active,
+section[role="region"] > header:first-child menu[type="toolbar"] button:not(:disabled):active {
+  background-color: #B20000 !important;
 }
 
+section[role="region"] > header:first-child .icon.icon-back {
+  background-image: url(../images/back.png);
+}
 
+section[role="region"] > header:first-child .icon.icon-menu {
+  background-image: url(../images/menu.png);
+}
+
+/* --- icons --- */
+
+
+i.icon
+{
+  position: absolute;
+  width: 15px;
+  height: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+i.i-bus
+{
+  background-image: url(../images/bus.png);
+  top: 15px;
+}
+i.i-clock
+{
+  background-image: url(../images/clock.png);  
+  top: 37px;
+}
 
 /* --- general --- */
 
+var { font-style: normal;}
 
 #index {
   height: 100%;
@@ -167,6 +205,11 @@ div[role="slider"] > label.icon {
   font-size: 1.5rem;
 }
 
+#connections li a p.r2 var
+{
+  padding-left: 20px;
+}
+
 #connections li a p small 
 {
   color: #5b5b5b;
@@ -186,6 +229,7 @@ section[role="region"] > header:first-child > a:last-child .icon
 }
 [data-type="list"] aside.pack-end {
   padding-top: 8px;
+  padding-right: 16px;
 }
 
 
@@ -260,8 +304,13 @@ div.passlist > div
 /* detailView */
 
 .f-14 h2 {font-size: 14px;}
+
 .f-14 h2:first-child,
-.f-14 h2 span{color:gray;}
+.f-14 h2 span
+{
+  color:gray;
+  padding-left: 4px;
+}
 
 .content-10
 {

@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <title>SBB / CFF / FSS</title>
   <!-- Building blocks -->
   <link rel="stylesheet" href="bower_components/building-blocks/style/action_menu.css">
@@ -26,9 +26,6 @@
 
   <!-- Additional markup to make Building Blocks kind of cross browser -->
   <link rel="stylesheet" href="bower_components/building-blocks/cross_browser.css">
-
-  <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css">
 
 
@@ -63,39 +60,42 @@
       </header>
       <article class="content scrollable header">
 
-      	<form>
-        <p>
-		    	<input type="text" name="from" placeholder="from" required autocomplete="on" list="from-list">
-		    	<button type="reset">Clear</button>
-		    	<datalist id="from-list">
- 					<option value="Zürich">Zürich</option>
- 					<option value="Biel">Biel</option>
- 					<option value="Bern">Bern</option>
- 				</datalist>
-		  	</p>
-		  	<p>
-		    	<input type="text" name="to" placeholder="to" required autocomplete="on" list="to-list">
-		    	<button type="reset">Clear</button>
-		    	<datalist id="to-list">
- 					<option value="Zürich">Zürich</option>
- 					<option value="Biel">Biel</option>
- 					<option value="Bern">Bern</option>
- 				</datalist>
-		  	</p>
-		  	<p>
-		    	<input type="time" name="departure" placeholder="departure">
-		    	<button type="reset">Clear</button>
-		  	</p>
-		  	<p>
-		    	<input type="time" name="arrival" placeholder="arrival">
-		    	<button type="reset">Clear</button>
-		  	</p>
-		  	
-		</form>
+        <form>
+          <p>
+    	    	<input type="text" name="from" placeholder="from" required autocomplete="on" list="from-list">
+    	    	<button type="reset">Clear</button>
+    	    	<datalist id="from-list">
+    					<option value="Zürich">Zürich</option>
+    					<option value="Biel">Biel</option>
+    					<option value="Bern">Bern</option>
+    				</datalist>
+    	  	</p>
+    	  	<p>
+    	    	<input type="text" name="to" placeholder="to" required autocomplete="on" list="to-list">
+    	    	<button type="reset">Clear</button>
+    	    	<datalist id="to-list">
+    					<option value="Zürich">Zürich</option>
+    					<option value="Biel">Biel</option>
+    					<option value="Bern">Bern</option>
+    				</datalist>
+    	  	</p>
+    	  	<p>
+    	    	<input type="time" name="departure" placeholder="departure">
+    	    	<button type="reset">Clear</button>
+    	  	</p>
+    	  	<p>
+    	    	<input type="time" name="arrival" placeholder="arrival">
+    	    	<button type="reset">Clear</button>
+    	  	</p>
+    	  	
+    	  </form>
+
         <div data-type="list">
           <ul id="connections">
+
           </ul>
         </div>
+
       </article>
     </section> <!-- end drawer -->
   </section> <!-- end index -->
@@ -121,6 +121,52 @@
   </section>
   <section role="status">
   </section>
+
+  <!--···························· Templates ····························-->
+  <template id="connection">
+    <li data-target="detail-view">
+      <aside class="pack-end">
+          <small>rail_nr</small>
+      </aside>
+      <a href="#" data-id="id">
+        <p class="r1">
+          <var>station.name</var> <small>(duration h)</small>
+        </p>
+        <p class="r2">
+          <i class="icon i-clock"></i> <var>departure - length</var> <small>Umsteigen</small>
+        </p>
+      </a>
+    </li>
+  </template>
+
+  <template id="section">
+    <div class="grid header" data-show-passlist data-id="i">
+      <h2 class="col-1-3">departure.location.name</h2>
+      <h2 class="col-1-3 ">name</h2>
+      <h2 class="col-1-3"> arrival.location.name</h2>
+    </div>
+    <div class="grid f-14 arrival">
+      <h2 class="col-1-3">Abfahrt</h2>
+      <h2 class="col-1-3">departure.departure</h2>
+      <h2 class="col-1-3"><span>Steig</span> <var>departure.platform</var></h2>
+    </div>
+    <div class="grid f-14 departure">
+      <h2 class="col-1-3">Ankunft</h2>
+      <h2 class="col-1-3">arrival.arrival</h2>
+      <h2 class="col-1-3"><span>Steig</span> <var>arrival.platform</var></h2>
+    </div>
+  </template>
+  <!--
+  <template id="passlist">
+    <div class="passlist">
+      <div class="grid f-14 pass">
+        <h2 class="col-1-3"><var>station</var></h2>
+        <h2 class="col-1-3"><span>Abf.</span> <var>arrival</var></h2>
+        <h2 class="col-1-3"><span>Ank.</span> <var>departure</var></h2>
+      </div>
+    </div>
+  </template>
+  -->
   
   <script type="text/javascript" defer src="bower_components/building-blocks/js/status.js"></script>
   <script type="text/javascript" defer src="js/basil.min.js"></script>

@@ -24,42 +24,39 @@ var viewModel = function()
 
 	self.showDetail = function(id)
 	{
-		$.each(self.currConnections,function(i,Obj)
+		// search clicked connection
+		self.currObj = self.currConnections.filter(function(Obj)
 		{
-			if(id == Obj.id)
-			{
-				self.currObj = Obj;
-			}
-		});
-
-		console.log(self.currObj);	
-
-		$("#sections").children().remove();
+			return id == Obj.id;
+		})[0];
 		
-		$.each(self.currObj.sections,function(i,Obj)
+		var d 			= document;
+		var sections 	= d.getElementById("sections"),
+			section 	= d.getElementById("section").content;
+
+		while(sections.firstChild) sections.removeChild(sections.firstChild);
+		
+		for (var i = self.currObj.sections.length; i--;) 
 		{
+			var Obj = self.currObj.sections[i];
 			var name = (Obj.journey)?Obj.journey.name:'';
 
-			$("#sections").append('\
-				<div class="grid header" data-show-passlist data-id="'+i+'">\
-					<h2 class="col-1-3">'+Obj.departure.location.name+'</h2>\
-					<h2 class="col-1-3 ">'+name+'</h2>\
-					<h2 class="col-1-3"> '+Obj.arrival.location.name+'</h2>\
-				</div>\
-				<div class="grid f-14 arrival">\
-					<h2 class="col-1-3">Abfahrt</h2>\
-					<h2 class="col-1-3">'+moment(Obj.departure.departure).format('H:mm')+'</h2>\
-					<h2 class="col-1-3"><span>Steig</span> '+Obj.departure.platform+'</h2>\
-				</div>\
-				<div class="grid f-14 departure">\
-					<h2 class="col-1-3">Ankunft</h2>\
-					<h2 class="col-1-3">'+moment(Obj.arrival.arrival).format('H:mm')+'</h2>\
-					<h2 class="col-1-3"><span>Steig</span> '+Obj.arrival.platform+'</h2>\
-				</div>')
-		});
+			// fill the template object with current connection data
+			section.querySelector(".grid").dataset.id = i;			
+			section.querySelectorAll(".grid")[0].querySelectorAll("h2")[0].innerHTML = Obj.departure.location.name;
+			section.querySelectorAll(".grid")[0].querySelectorAll("h2")[1].innerHTML = name;
+			section.querySelectorAll(".grid")[0].querySelectorAll("h2")[2].innerHTML = Obj.arrival.location.name;
+			section.querySelectorAll(".grid")[1].querySelectorAll("h2")[1].innerHTML = moment(Obj.departure.departure).format('H:mm');
+			section.querySelectorAll(".grid")[1].querySelectorAll("h2")[2].querySelector("var").innerHTML = Obj.departure.platform;
+			section.querySelectorAll(".grid")[2].querySelectorAll("h2")[1].innerHTML = moment(Obj.arrival.arrival).format('H:mm');
+			section.querySelectorAll(".grid")[2].querySelectorAll("h2")[2].querySelector("var").innerHTML = Obj.arrival.platform;
 
-	  	document.querySelector('#detailView').className = 'current';
-	  	document.querySelector('[data-position="current"]').className = 'left';		
+			// append to connections list
+			sections.appendChild(d.importNode(section, true));
+		};
+
+	  	d.querySelector('#detailView').className = 'current';
+	  	d.querySelector('[data-position="current"]').className = 'left';		
 	};
 
 	self.togglePasslist = function(id)
@@ -112,30 +109,31 @@ var viewModel = function()
 	self.drawConnection = function()
 	{
 		console.log("drawConnection ...");
-		var $connections = $("#connections");
+		var d = document;
 
-		$connections.children().remove();
+		var connections = d.getElementById("connections"),
+			connection 	= d.getElementById("connection").content;
 
-		for (var i = self.currConnections.length - 1; i >= 0; i--) {
+		while(connections.firstChild) connections.removeChild(connections.firstChild);
+
+		for (var i = self.currConnections.length; i--;) {
 			
 			var Obj = self.currConnections[i];
 
+			// prepare connection variables
 			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm'),
 				duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm'),
-				rail_nr = (Obj.from.platform)?'Gleis '+Obj.from.platform:'<i class="fa fa-bus"></i>';
+				rail_nr = (Obj.from.platform)?'Gleis '+Obj.from.platform:'<i class="icon i-bus"></i>';
 
-			//Obj.products.toString()
+			// fill the template object with current connection data
+			connection.querySelector("li a").dataset.id 		= Obj.id;
+			connection.querySelector("aside small").innerHTML 	= rail_nr;
+			connection.querySelector(".r1 var").innerHTML 		= Obj.from.station.name;
+			connection.querySelector(".r1 small").innerHTML 	= duration;
+			connection.querySelector(".r2 var").innerHTML 		= departure+' - '+Obj.sections.length;
 
-			$connections.append('\
-			<li data-target="detail-view">\
-			    <aside class="pack-end">\
-			        <small>'+rail_nr+'</small>\
-			    </aside>\
-				<a href="#" data-id="'+Obj.id+'">\
-					<p>'+Obj.from.station.name+' <small>('+duration+' h)</small></p>\
-					<p><i class="ion-clock"></i> '+departure+' - '+Obj.sections.length+' <small>Umsteigen</small></p>\
-				</a>\
-			</li>');
+			// append to connections list
+			connections.appendChild(d.importNode(connection, true));
 		};
 	};
 
