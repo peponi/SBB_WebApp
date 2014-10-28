@@ -54,12 +54,20 @@ var viewModel = function()
 				s.querySelectorAll(".grid")[1].querySelectorAll("h2")[2].querySelector("span").innerHTML = 'Steig';
 				s.querySelectorAll(".grid")[1].querySelectorAll("h2")[2].querySelector("var").innerHTML = Obj.departure.platform;
 			}
+			else
+			{
+				s.querySelectorAll(".grid")[1].querySelectorAll("h2")[2].querySelector("i").className = "icon i-walk";
+			}	
 			
 			s.querySelectorAll(".grid")[2].querySelectorAll("h2")[1].innerHTML = moment(Obj.arrival.arrival).format('H:mm');
 			if(Obj.arrival.platform)
 			{
 				s.querySelectorAll(".grid")[2].querySelectorAll("h2")[2].querySelector("span").innerHTML = 'Steig';				
 				s.querySelectorAll(".grid")[2].querySelectorAll("h2")[2].querySelector("var").innerHTML = Obj.arrival.platform;
+			}
+			else
+			{
+				s.querySelectorAll(".grid")[2].querySelectorAll("h2")[2].querySelector("i").className = "icon i-walk";
 			}
 
 			// append to connections list
@@ -133,8 +141,17 @@ var viewModel = function()
 
 			// prepare connection variables
 			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm'),
-				duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm'),
-				rail_nr = (Obj.from.platform)?'Gleis '+Obj.from.platform:'<i class="icon i-bus"></i>';
+				duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm')
+				rail_nr = '';
+
+			if(Obj.from.platform)
+			{
+				rail_nr ='Gleis '+Obj.from.platform;
+			}
+			else
+			{				
+				rail_nr = (Obj.products[0] == "NFT")? '<i class="icon i-tram"></i>':'<i class="icon i-bus"></i>';
+			}
 
 			// fill the template object with current connection data
 			connection.querySelector("li a").dataset.id 		= Obj.id;

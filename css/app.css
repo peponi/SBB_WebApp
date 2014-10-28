@@ -30,17 +30,27 @@ i.icon
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 i.i-bus
 {
   background-image: url(../images/bus.png);
   top: 15px;
   right:15px;
 }
+i.i-tram
+{
+  background-image: url(../images/tram1.png);
+  right: 14px;
+  height: 17px;
+}
 i.i-clock
 {
   background-image: url(../images/clock.png);  
   top: 37px;
+}
+i.i-walk
+{
+  background-image: url(../images/walk.png);  
+  height:16px;
 }
 
 /* --- general --- */
@@ -331,7 +341,7 @@ div.passlist > div
 
 .IR {background-color: #bf0000}
 .RE, .EC {background-color: #d60000}
-.NFT {background-color: #F7CA18}
+.NFT {background-color: #333}
 .S, .T {background-color: #26a65b}
 .NFB {background-color: #1e8bc3}
 
