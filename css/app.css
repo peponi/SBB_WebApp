@@ -279,6 +279,19 @@ input[type=time]
   background: #fff url(../bower_components/building-blocks/style/input_areas/images/ui/shadow.png) repeat-x;
 }
 
+#time
+{
+  line-height: 40px;
+  font-size: 16px;
+  color: #333;
+}
+
+label.pack-switch input ~ span:after
+{
+  left: 0;
+  top: 42%;
+}
+
 #favorits li 
 {
   height: 44px;
@@ -328,7 +341,7 @@ div.passlist > div
   padding:5px;
 }
 
-.IC, .ICN, .IR, .RE, .EC, .NFB, .NFT, .S, .T
+.IC, .ICN, .IR, .RE, .EC, .NFB, .NFT, .S, .T, .ICE, .BUS, .R, .RJ
 { 
   background-color: #B20000;
   color: white;
@@ -339,11 +352,11 @@ div.passlist > div
   text-align: center;
 }
 
-.IR {background-color: #bf0000}
-.RE, .EC {background-color: #d60000}
-.NFT {background-color: #333}
-.S, .T {background-color: #26a65b}
-.NFB {background-color: #1e8bc3}
+.IR, .ICE {background-color: #bf0000}
+.RE, .EC, .R, .RJ{background-color: #d60000}
+.NFT,.T {background-color: #333}
+.S,  {background-color: #26a65b}
+.NFB, .BUS {background-color: #1e8bc3}
 
 
 

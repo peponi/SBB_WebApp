@@ -1,5 +1,5 @@
 <!DOCTYPE html >
-<html manifest="manifest.appcache">
+<html ><!-- manifest="manifest.appcache"> -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="bower_components/building-blocks/style/status.css">
   <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/drawer.css">
   <link rel="stylesheet" href="bower_components/building-blocks/style_unstable/lists.css">
+  <link rel="stylesheet" href="bower_components/building-blocks/style/switches.css">
+
 
   <!-- Icons -->
   <link rel="stylesheet" href="bower_components/building-blocks/icons/styles/action_icons.css">
@@ -79,14 +81,24 @@
     					<option value="Bern">Bern</option>
     				</datalist>
     	  	</p>
-    	  	<p>
-    	    	<input type="time" name="departure" placeholder="departure">
-    	    	<button type="reset">Clear</button>
-    	  	</p>
-    	  	<p>
-    	    	<input type="time" name="arrival" placeholder="arrival">
-    	    	<button type="reset">Clear</button>
-    	  	</p>
+          <p class="grid">
+            <div class="col-1-3">                            
+              <label class="pack-switch">
+                <input type="checkbox" name="isArrivalTime">
+                <span></span>
+              </label>     
+            </div>
+            <div class="col-1-3"> 
+              <var id="time">departure</var>         
+            </div>
+    	  	  <div class="col-1-3">
+              <p>
+    	    	    <input type="time" name="time" placeholder="departure">
+    	    	    <button type="reset">Clear</button>
+              </p>
+            </div>
+            
+          </p>
     	  	
     	  </form>
 

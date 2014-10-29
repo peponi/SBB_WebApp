@@ -5,6 +5,8 @@ function serach()
 	var form 	= $("form"),
 		from 	= form.find("[name=from]").val(),
 		to 		= form.find("[name=to]").val();
+		time 	= form.find("[name=time]").val(),
+		isArrivalTime = form.find("[name=isArrivalTime]").is(":checked");
 
 	if (!from && !to)
 	{
@@ -12,9 +14,9 @@ function serach()
 		return 0;
 	}
 
-	console.log(from,to);
+	console.log(from,to,time,"isArrivalTime="+isArrivalTime);
 
-	v.search(from,to)
+	v.search(from,to,time,isArrivalTime)
 	return 1;
 };
 
@@ -86,7 +88,27 @@ $("[data-load-connections]").on("click",function(e)
 	v.loadFavorit(e.target.id);
 });
 
+$("[name=isArrivalTime]").on("change",function(e)
+{
+	document.getElementById("time").innerHTML = (e.target.checked)? "arrival": "departure" ;	
+});
+
 document.querySelector('#btn-back').addEventListener ('click', function () {
   document.querySelector('#detailView').className = 'right';
   document.querySelector('[data-position="current"]').className = 'current';
 });
+
+window.addEventListener('load', function(e) {
+
+  window.applicationCache.addEventListener('updateready', function(e) {
+    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+      // Browser downloaded a new app cache.
+      if (confirm('A new version of this site is available. Load it?')) {
+        window.location.reload();
+      }
+    } else {
+      // Manifest didn't changed. Nothing new to server.
+    }
+  }, false);
+
+}, false);

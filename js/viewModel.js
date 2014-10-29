@@ -109,9 +109,11 @@ var viewModel = function()
 		}
 	};
 
-	self.search = function(from,to)
+	self.search = function(from,to,time,isArrivalTime)
 	{
-		$.get(self.api+"connections?from="+from+"&to="+to,null,null,'json')
+		var time_s = (time)?'&time='+time : '';
+			time_s += (isArrivalTime)? '&isArrivalTime=1' : '';
+		$.get(self.api+"connections?from="+from+"&to="+to+time_s+"&limit=6",null,null,'json')
 		.done(function(data)
 		{
 			console.log(data);
