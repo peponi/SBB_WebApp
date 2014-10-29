@@ -30,17 +30,27 @@ i.icon
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 i.i-bus
 {
   background-image: url(../images/bus.png);
   top: 15px;
   right:15px;
 }
+i.i-tram
+{
+  background-image: url(../images/tram1.png);
+  right: 14px;
+  height: 17px;
+}
 i.i-clock
 {
   background-image: url(../images/clock.png);  
   top: 37px;
+}
+i.i-walk
+{
+  background-image: url(../images/walk.png);  
+  height:16px;
 }
 
 /* --- general --- */
@@ -233,6 +243,7 @@ section[role="region"] > header:first-child > a:last-child .icon
 }
 
 
+
 ['data-show-form'].active
 {
   background-color: #dc6a0e;
@@ -314,16 +325,27 @@ div.passlist > div
 
 .content-10
 {
-  padding:10px;
+  padding:5px;
 }
 
-.ic, .ice
+.IC, .ICN, .IR, .RE, .EC, .NFB, .NFT, .S, .T
 { 
-  background-color: red;
-color: white;
-padding: 5px 5px;
-margin: 8px 0px;
+  background-color: #B20000;
+  color: white;
+  padding: 5px 5px;
+  max-width:138px;
+  margin: 8px 6px 0 6px;
+  border-radius: 6px;
+  text-align: center;
 }
+
+.IR {background-color: #bf0000}
+.RE, .EC {background-color: #d60000}
+.NFT {background-color: #333}
+.S, .T {background-color: #26a65b}
+.NFB {background-color: #1e8bc3}
+
+
 
 /* Grid */
 
