@@ -1,6 +1,6 @@
 v = new viewModel();
 
-function serach()
+function search()
 {
 	var form 	= $("form"),
 		from 	= form.find("[name=from]").val(),
@@ -27,7 +27,7 @@ $("[data-show-form]").on("click",function()
 	{
 		console.log("ist active > suchen und slideUp");
 		
-		if( serach() )
+		if( search() )
 		{
 			$("form").slideUp();
 			$(this).children().removeClass("active");
@@ -39,6 +39,22 @@ $("[data-show-form]").on("click",function()
 		$("form").slideDown();
 		$(this).children().addClass("active");
 	}	
+});
+
+$("[name=to]").on("keydown",function(e)
+{
+	if(e.keyCode==13)
+	{
+		$("[data-show-form]").trigger("click");
+	}
+});
+
+$("[name=time]").on("keydown",function(e)
+{
+	if(e.keyCode==13)
+	{
+		$("[data-show-form]").trigger("click");
+	}
 });
 
 // show connection detail

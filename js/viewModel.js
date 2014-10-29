@@ -117,7 +117,10 @@ var viewModel = function()
 		.done(function(data)
 		{
 			console.log(data);
-			self.currConnections = data.connections;
+			self.currConnections = data.connections.sort(function(con1,con2)
+			{
+				return con1.from.departureTimestamp < con2.from.departureTimestamp;
+			});
 			self.saveLastConnections();
 			self.loadLastConnections();
 		})
@@ -141,6 +144,8 @@ var viewModel = function()
 			
 			var Obj = self.currConnections[i];
 
+
+
 			// prepare connection variables
 			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm'),
 				duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm')
@@ -152,7 +157,7 @@ var viewModel = function()
 			}
 			else
 			{				
-				rail_nr = (Obj.products[0] == "NFT")? '<i class="icon i-tram"></i>':'<i class="icon i-bus"></i>';
+				rail_nr = (Obj.products[0] == "NFT" || Obj.products[0] == "T")? '<i class="icon i-tram"></i>':'<i class="icon i-bus"></i>';
 			}
 
 			// fill the template object with current connection data
