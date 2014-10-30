@@ -78,12 +78,10 @@ module.exports = function(grunt) {
             'bower_components/building-blocks/cross_browser.css',
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/moment/min/moment-with-locales.min.js',
-            'http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css',
-            'http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css',
             'js/basil.min.js',
             'build/app.min.css',
             'build/app.min.js',
-            'build/index.html'
+            'index.html'
             ],
           network: ['*'],
           exclude: [],
@@ -93,7 +91,7 @@ module.exports = function(grunt) {
           hash: false,
           master: ['index.html']
         },
-        src: ['img/*'],
+        src: ['images/*'],
         dest: 'manifest.appcache'
       }
     },
@@ -106,7 +104,7 @@ module.exports = function(grunt) {
 
       scss: {
         files: ['css/*.css','index.html','js/*.js'],
-        tasks: ['manifest']
+        tasks: ['jshint','concat','uglify','cssmin','manifest']
       },
     }
 
@@ -122,6 +120,6 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat','uglify','cssmin','htmlmin','manifest']);
+  grunt.registerTask('default', ['jshint','concat','uglify','cssmin','htmlmin','manifest']);
 
 };

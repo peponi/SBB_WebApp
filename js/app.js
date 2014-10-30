@@ -49,7 +49,7 @@ $("[name=to]").on("keydown",function(e)
 	}
 });
 
-$("[name=time]").on("keydown",function(e)
+$("[name=from]").on("keydown",function(e)
 {
 	if(e.keyCode==13)
 	{
