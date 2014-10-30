@@ -1,11 +1,13 @@
 var viewModel = function()
 {
-	var self = this,
-		basil = new window.Basil({namespace: 'conn_'});
+	var self 						= this,
+		store_prefix_connections 	= 'conn_',
+		store_prefix_favorits 		= 'fav_',
+		store 						= localStorage;
 
-	self.api = 'http://transport.opendata.ch/v1/';
-	self.currConnections = [];
-	self.currObj = {};
+	self.api 						= 'http://transport.opendata.ch/v1/';
+	self.currConnections 			= [];
+	self.currObj 					= {};
 
 	self.generateUID = function()
 	{
@@ -176,12 +178,18 @@ var viewModel = function()
 	{
 		var uid = 0;
 
-		basil.reset();
+		// remove last connections
+		for (var i = store.length; i--;){
+		    if (store.key(i).substring(0,store_prefix_connections.length) == store_prefix_connections) {
+		        store.removeItem(arr[i]);
+		    }
+		}
 
+		// save new connections
 		for (var i = self.currConnections.length - 1; i >= 0; i--) 
 		{
 			uid = self.generateUID();
-			basil.set(uid, self.currConnections[i]);
+			store.setItem(store_prefix_connections+uid, JSON.stringify(self.currConnections[i]));
 		}
 	};
 
@@ -190,19 +198,25 @@ var viewModel = function()
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
-		if(basil.check('local') && localStorage.length > 0)
+		console.log(store);
+
+		for (var i = store.length - 1; i >= 0; i--) 
 		{
-			$.each(localStorage,function(i,Obj)
+			console.log(store[i]);
+		}
+
+		/*
+		$.each(store,function(i,Obj)
 			{
 				if(i.split(":")[0].indexOf("conn") == 0) 
 				{
-					var id = i.split(":")[1];
-					Obj = basil.get(id);
+					var id = i.split("_")[1];
+					Obj = store.getItem(id);
 					Obj.id = id;
 					self.currConnections.push(Obj);
 				}
 			});
-		}
+		*/
 
 		console.log(self.currConnections);
 		self.drawConnection();
@@ -225,9 +239,9 @@ var viewModel = function()
 	{
 		console.log("loadFavorits ...");
 
-		if(localStorage.length > 0)
+		if(store.length > 0)
 		{
-			$.each(localStorage,function(i,Obj)
+			$.each(store,function(i,Obj)
 			{
 				if(i.split(":")[0].indexOf("fav") == 0) 
 				{
@@ -242,7 +256,7 @@ var viewModel = function()
 
 	self.loadFavorit = function(id)
 	{
-		var Obj = JSON.parse(localStorage.getItem("fav_:"+id));
+		var Obj = JSON.parse(store.getItem("fav_:"+id));
 
 		self.currConnections = Obj.connections;		
 		self.saveLastConnections();
@@ -253,7 +267,7 @@ var viewModel = function()
 	{
 		var id 		= v.generateUID();
 
-		localStorage.setItem('fav_:'+id, JSON.stringify({ from : from, to : to, connections : self.currConnections}));
+		store.setItem('fav_:'+id, JSON.stringify({ from : from, to : to, connections : self.currConnections}));
 		self.drawFavorit(id,from,to);
 
 		return 1;
@@ -261,8 +275,7 @@ var viewModel = function()
 
 	self.deleteFavorit = function(id)
 	{
-		basil = new window.Basil({namespace: 'fav_'});
-		basil.remove(id);
+		store.removeItem(store_prefix_favorits+id)
 		$("#"+id).remove();
 		return 1;
 	};
