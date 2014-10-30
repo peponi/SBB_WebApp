@@ -97,16 +97,22 @@ module.exports = function(grunt) {
         dest: 'manifest.appcache'
       }
     },
-    
-    /*,
-
     watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'qunit']
-    }*/
+
+      options: {
+        livereload: true,
+        spawn: false
+      },
+
+      scss: {
+        files: ['css/*.css','index.html','js/*.js'],
+        tasks: ['manifest']
+      },
+    }
+
   });
 
-  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');

@@ -286,6 +286,8 @@ input[type=time]
   color: #333;
 }
 
+.padding-top-10 {padding-top: 10px;}
+
 label.pack-switch input ~ span:after
 {
   left: 0;
