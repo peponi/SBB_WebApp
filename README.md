@@ -8,8 +8,12 @@ it's a WebApp optimzed for [Firefox OS](https://www.mozilla.org/de/firefox/os/) 
 # Status
 
 * 05.10.2014 - v0.1/2 - ready to take off (^_^) 
+* 06.10.2014 - added passlists in detailView
 * 08.10.2014 - added icons
 * 24.10.2014 - fixed some bux & refactored html (template areas) & replaced lot of jQuery shit
+* 27.10.2014 - refactored detail view, added trasport vehicle colors
+* 28.10.2014 - removed ionicons and font awesome, replaced with png icons
+* 29.10.2014 - added key down search event, sort searched result
 
 # install
 
@@ -24,10 +28,10 @@ click on http://127.0.0.1:8080
 # Todo
 
 * passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
-* product colors > SBB red, bus blue, etc
 * replace Basil.js (what a crap)
 * replace jQuery
 * translation, fr/it
+* show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
 
 # Bugs
 
