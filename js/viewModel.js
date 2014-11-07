@@ -1,19 +1,13 @@
 var viewModel = function()
 {
-	var self = this,
-		basil = new window.Basil({namespace: 'conn_'});
+	var self 						= this,
+		store_prefix_connections 	= 'conn_',
+		store_prefix_favorits 		= 'fav_',
+		store 						= localStorage;
 
-	self.api = 'http://transport.opendata.ch/v1/';
-	self.currConnections = [];
-	self.currObj = {};
-
-	self.generateUID = function()
-	{
-		return 'xxxxxxxx'.replace(/[x]/g, function(c) {
-			    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-			    return v.toString(16);
-			});
-	};
+	self.api 						= 'http://transport.opendata.ch/v1/';
+	self.currConnections 			= [];
+	self.currObj 					= {};
 
 	self.setStatus = function(msg)
 	{
@@ -24,11 +18,7 @@ var viewModel = function()
 
 	self.showDetail = function(id)
 	{
-		// search clicked connection
-		self.currObj = self.currConnections.filter(function(Obj)
-		{
-			return id == Obj.id;
-		})[0];
+		self.currObj = JSON.parse(store.getItem(store_prefix_connections+id));		
 		
 		var d 			= document;
 		var sections 	= d.getElementById("sections"),
@@ -140,11 +130,9 @@ var viewModel = function()
 
 		while(connections.firstChild) connections.removeChild(connections.firstChild);
 
-		for (var i = self.currConnections.length; i--;) {
+		for (var j = self.currConnections.length, i = 0; i < j; i++) {
 			
 			var Obj = self.currConnections[i];
-
-
 
 			// prepare connection variables
 			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm'),
@@ -174,37 +162,37 @@ var viewModel = function()
 
 	self.saveLastConnections = function()
 	{
-		var uid = 0;
+		//get all localStorage connection keys
+		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_connections.length) == store_prefix_connections}); 
 
-		basil.reset();
+		// remove last connections
+		for (var i = keys.length; i--;)
+		{	    
+		    store.removeItem(store_prefix_connections+i);   
+		}
 
-		for (var i = self.currConnections.length - 1; i >= 0; i--) 
+		// save new connections
+		for (var i = self.currConnections.length - 1; i--; ) 
 		{
-			uid = self.generateUID();
-			basil.set(uid, self.currConnections[i]);
+			self.currConnections[i].id = i;
+			store.setItem(store_prefix_connections+i, JSON.stringify(self.currConnections[i]));
 		}
 	};
 
 	self.loadLastConnections = function()
-	{
+	{		
+		//get all localStorage connection keys
+		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_connections.length) == store_prefix_connections}); 
+
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
-		if(basil.check('local') && localStorage.length > 0)
+		for (var i = keys.length; i--;) 
 		{
-			$.each(localStorage,function(i,Obj)
-			{
-				if(i.split(":")[0].indexOf("conn") == 0) 
-				{
-					var id = i.split(":")[1];
-					Obj = basil.get(id);
-					Obj.id = id;
-					self.currConnections.push(Obj);
-				}
-			});
+			var Obj = JSON.parse(store.getItem(store_prefix_connections+i));
+			self.currConnections.push(Obj);			
 		}
 
-		console.log(self.currConnections);
 		self.drawConnection();
 	};
 
@@ -216,33 +204,30 @@ var viewModel = function()
 		<li id="'+id+'">\
 			<a href="#" data-load-connections id="'+id+'">'+ from +' &#10132; '+ to +'</a>\
 			<aside>\
-				<a href="#" data-id="'+id+'">X</a>\
+				<a href="#" data-id="'+id+'">×</a>\
 			</aside>\
 		</li>');
 	};
 
 	self.loadFavorits = function()
 	{
+		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_favorits.length) == store_prefix_favorits}); 
+
 		console.log("loadFavorits ...");
 
-		if(localStorage.length > 0)
+		for (var i = keys.length; i--;) 
 		{
-			$.each(localStorage,function(i,Obj)
-			{
-				if(i.split(":")[0].indexOf("fav") == 0) 
-				{
-					var id 	= i.split(":")[1];
-					Obj 	= JSON.parse(Obj);
-
-					self.drawFavorit(id,Obj.from,Obj.to);
-				}
-			});
+			var Obj = JSON.parse(store.getItem(store_prefix_favorits+i));
+			self.drawFavorit(Obj.id,Obj.from,Obj.to);
 		}
 	};
 
 	self.loadFavorit = function(id)
 	{
-		var Obj = JSON.parse(localStorage.getItem("fav_:"+id));
+		console.log(id);
+		var Obj = JSON.parse(store.getItem(store_prefix_favorits +id));
+
+		console.log(Obj);
 
 		self.currConnections = Obj.connections;		
 		self.saveLastConnections();
@@ -251,9 +236,10 @@ var viewModel = function()
 
 	self.setFavorit = function(from,to)
 	{
-		var id 		= v.generateUID();
+		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_favorits.length) == store_prefix_favorits}),
+			id 	= (keys.length - 1) + 1;
 
-		localStorage.setItem('fav_:'+id, JSON.stringify({ from : from, to : to, connections : self.currConnections}));
+		store.setItem(store_prefix_favorits +id, JSON.stringify({ id : id, from : from, to : to, connections : self.currConnections}));
 		self.drawFavorit(id,from,to);
 
 		return 1;
@@ -261,9 +247,9 @@ var viewModel = function()
 
 	self.deleteFavorit = function(id)
 	{
-		basil = new window.Basil({namespace: 'fav_'});
-		basil.remove(id);
-		$("#"+id).remove();
+		store.removeItem(store_prefix_favorits+id)
+		var obj = document.getElementById(id);
+		obj.parentNode.removeChild(obj);
 		return 1;
 	};
 

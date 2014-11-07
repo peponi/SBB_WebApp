@@ -28,7 +28,6 @@ click on http://127.0.0.1:8080
 # Todo
 
 * passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
-* replace Basil.js (what a crap)
 * replace jQuery
 * translation, fr/it
 * show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
