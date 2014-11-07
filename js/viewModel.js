@@ -9,14 +9,6 @@ var viewModel = function()
 	self.currConnections 			= [];
 	self.currObj 					= {};
 
-	self.generateUID = function()
-	{
-		return 'xxxxxxxx'.replace(/[x]/g, function(c) {
-			    var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-			    return v.toString(16);
-			});
-	};
-
 	self.setStatus = function(msg)
 	{
 		utils.status.show(msg);  
@@ -26,11 +18,7 @@ var viewModel = function()
 
 	self.showDetail = function(id)
 	{
-		// search clicked connection
-		self.currObj = self.currConnections.filter(function(Obj)
-		{
-			return id == Obj.id;
-		})[0];
+		self.currObj = JSON.parse(store.getItem(store_prefix_connections+id));		
 		
 		var d 			= document;
 		var sections 	= d.getElementById("sections"),
@@ -146,8 +134,6 @@ var viewModel = function()
 			
 			var Obj = self.currConnections[i];
 
-
-
 			// prepare connection variables
 			var departure = moment.unix(Obj.from.departureTimestamp).format('H:mm'),
 				duration = moment(Obj.duration.substr(-8,5),"H:mm").format('H:mm')
@@ -176,20 +162,18 @@ var viewModel = function()
 
 	self.saveLastConnections = function()
 	{
-		var uid = 0;
-
 		// remove last connections
 		for (var i = store.length; i--;){
 		    if (store.key(i).substring(0,store_prefix_connections.length) == store_prefix_connections) {
-		        store.removeItem(arr[i]);
+		        store.removeItem(store_prefix_connections+i);
 		    }
 		}
 
 		// save new connections
 		for (var i = self.currConnections.length - 1; i >= 0; i--) 
 		{
-			uid = self.generateUID();
-			store.setItem(store_prefix_connections+uid, JSON.stringify(self.currConnections[i]));
+			self.currConnections[i].id = i;
+			store.setItem(store_prefix_connections+i, JSON.stringify(self.currConnections[i]));
 		}
 	};
 
@@ -198,27 +182,12 @@ var viewModel = function()
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
-		console.log(store);
-
 		for (var i = store.length - 1; i >= 0; i--) 
 		{
-			console.log(store[i]);
+			var Obj = JSON.parse(store.getItem(store_prefix_connections+i));
+			self.currConnections.push(Obj);
 		}
 
-		/*
-		$.each(store,function(i,Obj)
-			{
-				if(i.split(":")[0].indexOf("conn") == 0) 
-				{
-					var id = i.split("_")[1];
-					Obj = store.getItem(id);
-					Obj.id = id;
-					self.currConnections.push(Obj);
-				}
-			});
-		*/
-
-		console.log(self.currConnections);
 		self.drawConnection();
 	};
 
@@ -265,7 +234,7 @@ var viewModel = function()
 
 	self.setFavorit = function(from,to)
 	{
-		var id 		= v.generateUID();
+		var id 		= 0;
 
 		store.setItem('fav_:'+id, JSON.stringify({ from : from, to : to, connections : self.currConnections}));
 		self.drawFavorit(id,from,to);
