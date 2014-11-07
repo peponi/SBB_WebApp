@@ -1,3 +1,24 @@
+var stor = 
+{
+	get : function(id)
+	{
+		return JSON.parse(localStorage.getItem(id));
+	},
+	set : function(id,data)
+	{
+		return JSON.parse( localStorage.setItem(id, JSON.stringify(data) ));
+	},
+	rm : function(id)
+	{
+		localStorage.removeItem(id);
+	},
+	getAllKeysFor : function(prefix)
+	{
+		return Object.keys(localStorage).filter(function(c){return c.substring(0,prefix.length) == prefix}); 
+	}
+}
+
+
 var viewModel = function()
 {
 	var self 						= this,
@@ -215,7 +236,7 @@ var viewModel = function()
 
 		console.log("loadFavorits ...");
 
-		for (var i = keys.length; i--;) 
+		for (var j = keys.length, i = 0; i<j ;i++) 
 		{
 			var Obj = JSON.parse(store.getItem(store_prefix_favorits+i));
 			self.drawFavorit(Obj.id,Obj.from,Obj.to);

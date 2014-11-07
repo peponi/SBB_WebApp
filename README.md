@@ -14,6 +14,8 @@ it's a WebApp optimzed for [Firefox OS](https://www.mozilla.org/de/firefox/os/) 
 * 27.10.2014 - refactored detail view, added trasport vehicle colors
 * 28.10.2014 - removed ionicons and font awesome, replaced with png icons
 * 29.10.2014 - added key down search event, sort searched result
+* 30.10.2014 - removed basil.js
+* 07.11.2014 - removed basil.js
 
 # install
 
