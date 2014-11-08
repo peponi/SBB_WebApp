@@ -1,30 +1,28 @@
-var stor = 
-{
-	get : function(id)
-	{
-		return JSON.parse(localStorage.getItem(id));
-	},
-	set : function(id,data)
-	{
-		return JSON.parse( localStorage.setItem(id, JSON.stringify(data) ));
-	},
-	rm : function(id)
-	{
-		localStorage.removeItem(id);
-	},
-	getAllKeysFor : function(prefix)
-	{
-		return Object.keys(localStorage).filter(function(c){return c.substring(0,prefix.length) == prefix}); 
-	}
-}
-
-
 var viewModel = function()
 {
-	var self 						= this,
-		store_prefix_connections 	= 'conn_',
-		store_prefix_favorits 		= 'fav_',
-		store 						= localStorage;
+	var l 					= localStorage,
+		d 					= document;
+	var self 				= this,
+		store_prefix_conn 	= 'conn_',
+		store_prefix_fav 	= 'fav_',
+		stor = {
+			get : function(id)
+			{
+				return JSON.parse(l.getItem(id));
+			},
+			set : function(id,data)
+			{
+				return l.setItem(id, JSON.stringify(data) );
+			},
+			rm : function(id)
+			{
+				l.removeItem(id);
+			},
+			getKeysFor : function(prefix)
+			{
+				return Object.keys(l).filter(function(c){return c.substring(0,prefix.length) == prefix}); 
+			}
+		};
 
 	self.api 						= 'http://transport.opendata.ch/v1/';
 	self.currConnections 			= [];
@@ -39,9 +37,8 @@ var viewModel = function()
 
 	self.showDetail = function(id)
 	{
-		self.currObj = JSON.parse(store.getItem(store_prefix_connections+id));		
+		self.currObj = stor.get(store_prefix_conn+id);		
 		
-		var d 			= document;
 		var sections 	= d.getElementById("sections"),
 			section 	= d.getElementById("section").content;
 
@@ -144,7 +141,6 @@ var viewModel = function()
 	self.drawConnection = function()
 	{
 		console.log("drawConnection ...");
-		var d = document;
 
 		var connections = d.getElementById("connections"),
 			connection 	= d.getElementById("connection").content;
@@ -184,33 +180,33 @@ var viewModel = function()
 	self.saveLastConnections = function()
 	{
 		//get all localStorage connection keys
-		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_connections.length) == store_prefix_connections}); 
+		var keys = stor.getKeysFor(store_prefix_conn); 
 
 		// remove last connections
 		for (var i = keys.length; i--;)
 		{	    
-		    store.removeItem(store_prefix_connections+i);   
+		    stor.rm(store_prefix_conn+i);   
 		}
 
 		// save new connections
 		for (var i = self.currConnections.length - 1; i--; ) 
 		{
 			self.currConnections[i].id = i;
-			store.setItem(store_prefix_connections+i, JSON.stringify(self.currConnections[i]));
+			stor.set(store_prefix_conn+i, self.currConnections[i]);
 		}
 	};
 
 	self.loadLastConnections = function()
 	{		
 		//get all localStorage connection keys
-		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_connections.length) == store_prefix_connections}); 
+		var keys = stor.getKeysFor(store_prefix_conn); 
 
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
 		for (var i = keys.length; i--;) 
 		{
-			var Obj = JSON.parse(store.getItem(store_prefix_connections+i));
+			var Obj = stor.get(store_prefix_conn+i);
 			self.currConnections.push(Obj);			
 		}
 
@@ -232,23 +228,20 @@ var viewModel = function()
 
 	self.loadFavorits = function()
 	{
-		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_favorits.length) == store_prefix_favorits}); 
+		var keys = stor.getKeysFor(store_prefix_fav); 
 
 		console.log("loadFavorits ...");
 
 		for (var j = keys.length, i = 0; i<j ;i++) 
 		{
-			var Obj = JSON.parse(store.getItem(store_prefix_favorits+i));
+			var Obj = stor.get(store_prefix_fav+i);
 			self.drawFavorit(Obj.id,Obj.from,Obj.to);
 		}
 	};
 
 	self.loadFavorit = function(id)
 	{
-		console.log(id);
-		var Obj = JSON.parse(store.getItem(store_prefix_favorits +id));
-
-		console.log(Obj);
+		var Obj = stor.get(store_prefix_fav +id);
 
 		self.currConnections = Obj.connections;		
 		self.saveLastConnections();
@@ -257,10 +250,10 @@ var viewModel = function()
 
 	self.setFavorit = function(from,to)
 	{
-		var keys = Object.keys(localStorage).filter(function(c){return c.substring(0,store_prefix_favorits.length) == store_prefix_favorits}),
-			id 	= (keys.length - 1) + 1;
+		var keys = stor.getKeysFor(store_prefix_fav);
+		var	id 	= (keys.length - 1) + 1;
 
-		store.setItem(store_prefix_favorits +id, JSON.stringify({ id : id, from : from, to : to, connections : self.currConnections}));
+		stor.set(store_prefix_fav +id, { id : id, from : from, to : to, connections : self.currConnections});
 		self.drawFavorit(id,from,to);
 
 		return 1;
@@ -268,8 +261,8 @@ var viewModel = function()
 
 	self.deleteFavorit = function(id)
 	{
-		store.removeItem(store_prefix_favorits+id)
-		var obj = document.getElementById(id);
+		stor.rm(store_prefix_fav+id)
+		var obj = d.getElementById(id);
 		obj.parentNode.removeChild(obj);
 		return 1;
 	};
