@@ -309,10 +309,11 @@ label.pack-switch input ~ span:after
   width: 10%;
   position: relative;
   top: -44px;
-  padding: 9px;
-  left: 88%;
+  padding: 9px 26px 9px 10px;
+  left: 82%;
   border-left: 0.1rem solid #596068;
   border-bottom: 0.1rem solid #596068;
+  font-size: 37px;
 }
 #favorits li aside a
 {

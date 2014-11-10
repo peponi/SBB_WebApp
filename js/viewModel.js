@@ -232,11 +232,11 @@ var viewModel = function()
 
 		console.log("loadFavorits ...");
 
-		for (var j = keys.length, i = 0; i<j ;i++) 
+		keys.forEach(function(key,id)
 		{
-			var Obj = stor.get(store_prefix_fav+i);
+			var Obj = stor.get(key);
 			self.drawFavorit(Obj.id,Obj.from,Obj.to);
-		}
+		});
 	};
 
 	self.loadFavorit = function(id)

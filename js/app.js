@@ -1,12 +1,13 @@
-v = new viewModel();
+v = new viewModel(),
+d = document;
 
 function search()
 {
-	var form 	= $("form"),
-		from 	= form.find("[name=from]").val(),
-		to 		= form.find("[name=to]").val();
-		time 	= form.find("[name=time]").val(),
-		isArrivalTime = form.find("[name=isArrivalTime]").is(":checked");
+	var form 	= document.querySelector("form"),
+		from 	= form.querySelector("[name=from]").value,
+		to 		= form.querySelector("[name=to]").value;
+		time 	= form.querySelector("[name=time]").value,
+		isArrivalTime = form.querySelector("[name=isArrivalTime]").checked;
 
 	if (!from && !to)
 	{
@@ -21,40 +22,52 @@ function search()
 };
 
 // toggle form area and search while form is closing
-$("[data-show-form]").on("click",function()
+document.querySelector('[data-show-form]').addEventListener("click",function(e)
 {
-	if( $(this).children().hasClass("active") )
+	var Obj = e.target,
+		form = document.querySelector("form");
+
+	// some time the parent element fires the click event
+	Obj = (Obj.tagName.toLowerCase('span'))? Obj : Obj.querySelector('span');
+
+	if( Obj.className.indexOf('active') != -1 )
 	{
 		console.log("ist active > suchen und slideUp");
 		
 		if( search() )
 		{
-			$("form").slideUp();
-			$(this).children().removeClass("active");
+			form.style.display = 'none';
+			Obj.classList.remove('active');
 		}
 	}
 	else
 	{
 		console.log("ist nicht active > set active und slideDown");
-		$("form").slideDown();
-		$(this).children().addClass("active");
+		
+		form.style.display = 'block';
+		Obj.classList.add('active');
 	}	
 });
 
-$("[name=to]").on("keydown",function(e)
+// trigger click on data-show-form
+function trigger(e)
 {
 	if(e.keyCode==13)
 	{
-		$("[data-show-form]").trigger("click");
+		e = document.createEvent('HTMLEvents');
+		e.initEvent('click', true, false);
+		document.querySelector('[data-show-form]').dispatchEvent(e);
 	}
+}
+
+document.querySelector("[name=to]").addEventListener('keydown', function(e)
+{
+	 trigger(e);
 });
 
-$("[name=from]").on("keydown",function(e)
+document.querySelector("[name=from]").addEventListener('keydown', function(e)
 {
-	if(e.keyCode==13)
-	{
-		$("[data-show-form]").trigger("click");
-	}
+	 trigger(e);
 });
 
 // show connection detail
@@ -70,11 +83,10 @@ $("#sections").on("click",'[data-show-passlist] h2',function(e)
 });
 
 // favorit current connection data
-$("nav a[data-fav-current-search]").on("click",function(e)
+document.querySelector("nav a[data-fav-current-search]").addEventListener('click', function(e)
 {
 	if(v.currConnections)
 	{
-
 		var from	= v.currConnections[0].from.location.name,
 			to		= v.currConnections[0].to.location.name;
 
@@ -90,21 +102,23 @@ $("nav a[data-fav-current-search]").on("click",function(e)
 });
 
 // delete favorit connection data
-$("#favorits").on("click","li aside a",function(e)
-{
-	if(v.deleteFavorit(e.target.dataset.id))
+[].forEach.call(document.querySelectorAll('#favorits li aside a'), function(el) {
+  el.addEventListener('click', function(e) {
+    if(v.deleteFavorit(e.target.dataset.id))
 	{
 		v.setStatus("favorit has been deleted");
 	}
+  })
 });
 
 // load this connection
-$("[data-load-connections]").on("click",function(e)
-{
-	v.loadFavorit(e.target.id);
-});
+[].forEach.call(document.querySelectorAll('[data-load-connections]'), function(el) {
+  el.addEventListener('click', function(e) {
+    v.loadFavorit(e.target.id);
+  })
+})
 
-$("[name=isArrivalTime]").on("change",function(e)
+document.querySelector("[name=isArrivalTime]").addEventListener("change", function(e)
 {
 	document.getElementById("time").innerHTML = (e.target.checked)? "arrival": "departure" ;	
 });

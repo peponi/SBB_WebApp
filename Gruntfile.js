@@ -120,6 +120,6 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint','concat','uglify','cssmin','htmlmin','manifest']);
+  grunt.registerTask('default', ['concat','uglify','cssmin','htmlmin','manifest']);
 
 };

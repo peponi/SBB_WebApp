@@ -31,10 +31,15 @@ click on http://127.0.0.1:8080
 
 * passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
 * replace jQuery
-* translation, fr/it
 * show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
+* autofill
 
 # Bugs
 
 * nach neuer suche kann zwar ein favorit erstellt werden, es speichert aber daten der vorherigen suche
+
+# Wishlist
+
+* vibrations alarm/reminder für ausgewählte verbindung
+* translation, fr/it
 
