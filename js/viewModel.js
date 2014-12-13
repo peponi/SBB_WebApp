@@ -37,7 +37,7 @@ var viewModel = function()
 
 	self.showDetail = function(id)
 	{
-		self.currObj = stor.get(store_prefix_conn+id);		
+		self.currObj = stor.get(store_prefix_conn+id);	
 		
 		var sections 	= d.getElementById("sections"),
 			section 	= d.getElementById("section").content;
@@ -49,10 +49,12 @@ var viewModel = function()
 			var Obj 		= self.currObj.sections[i];
 			var name 		= (Obj.journey)?Obj.journey.name:'',
 				category 	= (Obj.journey)?Obj.journey.category:'none',
-				s 			= section.cloneNode(true);			
+				s 			= section.cloneNode(true);		
+					
 
 			// fill the template object with current connection data
-			s.querySelector(".grid").dataset.id = i;			
+			s.querySelector(".grid").dataset.id = i;
+			s.querySelector(".grid").className = "grid header show-passlist data-id_"+i;//can't querySelectorAll("[data-id=1]")	
 			s.querySelectorAll(".grid")[0].querySelectorAll("h2")[0].innerHTML = Obj.departure.location.name;
 			s.querySelectorAll(".grid")[0].querySelectorAll("h2")[1].innerHTML = name;
 			s.querySelectorAll(".grid")[0].querySelectorAll("h2")[1].className = "col-1-2 " + category;
@@ -65,8 +67,7 @@ var viewModel = function()
 			else
 			{
 				s.querySelectorAll(".grid")[1].querySelectorAll("h2")[2].querySelector("i").className = "icon i-walk";
-			}	
-			
+			}
 			s.querySelectorAll(".grid")[2].querySelectorAll("h2")[1].innerHTML = moment(Obj.arrival.arrival).format('H:mm');
 			if(Obj.arrival.platform)
 			{
@@ -88,13 +89,17 @@ var viewModel = function()
 
 	self.togglePasslist = function(id)
 	{
+		console.log(d.querySelector(".data-id_"+id));
+
 		var passList = self.currObj.sections[id].journey.passList,
 			html = '',
-			$sectionPassList = $("#sections div[data-id="+id+"]").next(".arrival");
+			sectionPassList = d.querySelector(".data-id_"+id).nextElementSibling(".arrival");
 
-		if($sectionPassList.find("div.passlist").length)
+			console.log(sectionPassList);
+			/*
+		if(sectionPassList.querySelector("div.passlist").length)
 		{
-			$sectionPassList.find("div.passlist").slideToggle();
+			$(sectionPassList.querySelector("div.passlist")).slideToggle();
 		}
 		else
 		{		
@@ -115,27 +120,36 @@ var viewModel = function()
 
 			$sectionPassList.append('<div class="passlist">'+html+'</div>');
 		}
+		*/
 	};
 
 	self.search = function(from,to,time,isArrivalTime)
 	{
 		var time_s = (time)?'&time='+time : '';
 			time_s += (isArrivalTime)? '&isArrivalTime=1' : '';
-		$.get(self.api+"connections?from="+from+"&to="+to+time_s+"&limit=6",null,null,'json')
-		.done(function(data)
+
+		xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET",self.api+"connections?from="+from+"&to="+to+time_s+"&limit=6",false);
+		xmlhttp.onreadystatechange=function()
 		{
-			console.log(data);
-			self.currConnections = data.connections.sort(function(con1,con2)
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				return con1.from.departureTimestamp < con2.from.departureTimestamp;
-			});
-			self.saveLastConnections();
-			self.loadLastConnections();
-		})
-		.fail(function(err)
-		{
-			console.log(err);
-		})
+				var resp = JSON.parse(xmlhttp.responseText);
+
+				console.log(resp);
+				self.currConnections = resp.connections.sort(function(con1,con2)
+				{
+					return con1.from.departureTimestamp < con2.from.departureTimestamp;
+				});
+				self.saveLastConnections();
+				self.loadLastConnections();
+			}
+			else
+			{
+				console.log(xmlhttp.status,xmlhttp.responseText);
+			}
+		}
+		xmlhttp.send();
 	};
 
 	self.drawConnection = function()
@@ -167,6 +181,7 @@ var viewModel = function()
 
 			// fill the template object with current connection data
 			connection.querySelector("li a").dataset.id 		= Obj.id;
+			connection.querySelector("li a").className			= "show-detail data-id_"+Obj.id;
 			connection.querySelector("aside small").innerHTML 	= rail_nr;
 			connection.querySelector(".r1 var").innerHTML 		= Obj.from.station.name;
 			connection.querySelector(".r1 small").innerHTML 	= duration;
