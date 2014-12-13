@@ -20,7 +20,16 @@ var viewModel = function()
 			},
 			getKeysFor : function(prefix)
 			{
-				return Object.keys(l).filter(function(c){return c.substring(0,prefix.length) == prefix}); 
+				var ret = [];
+
+				for (var k in l){
+				   ret.push(k);
+				}
+
+				return ret.filter(function(c){return c.substring(0,prefix.length) == prefix}); 
+
+				// Object.keys dosen't work on my ZTE Open - FFOS 1.2
+				//return Object.keys(l).filter(function(c){return c.substring(0,prefix.length) == prefix}); 
 			}
 		};
 
