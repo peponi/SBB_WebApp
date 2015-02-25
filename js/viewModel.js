@@ -63,7 +63,7 @@ var viewModel = function()
 
 			// fill the template object with current connection data
 			s.querySelector(".grid").dataset.id = i;
-			s.querySelector(".grid").className = "grid header show-passlist data-id_"+i;//can't querySelectorAll("[data-id=1]")	
+			s.querySelector(".grid").className = "grid header show-passlist data-detail-id_"+i;//can't querySelectorAll("[data-id=1]")	
 			s.querySelectorAll(".grid")[0].querySelectorAll("h2")[0].innerHTML = Obj.departure.location.name;
 			s.querySelectorAll(".grid")[0].querySelectorAll("h2")[1].innerHTML = name;
 			s.querySelectorAll(".grid")[0].querySelectorAll("h2")[1].className = "col-1-2 " + category;
@@ -98,15 +98,11 @@ var viewModel = function()
 
 	self.togglePasslist = function(id)
 	{
-		console.log(d.querySelector(".data-id_"+id));
-
 		var passList = self.currObj.sections[id].journey.passList,
 			html = '',
-			sectionPassList = d.querySelector(".data-id_"+id).nextElementSibling(".arrival");
-
-			console.log(sectionPassList);
-			/*
-		if(sectionPassList.querySelector("div.passlist").length)
+			sectionPassList = d.querySelector(".data-detail-id_"+id).nextElementSibling;
+			
+		if(sectionPassList.querySelector("div.passlist") != null)
 		{
 			$(sectionPassList.querySelector("div.passlist")).slideToggle();
 		}
@@ -127,9 +123,8 @@ var viewModel = function()
 						</div>';
 			}
 
-			$sectionPassList.append('<div class="passlist">'+html+'</div>');
+			$(sectionPassList).append('<div class="passlist">'+html+'</div>');
 		}
-		*/
 	};
 
 	self.search = function(from,to,time,isArrivalTime)
@@ -228,7 +223,7 @@ var viewModel = function()
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
-		for (var i = keys.length; i--;) 
+		for (var i = keys.length; i--;)
 		{
 			var Obj = stor.get(store_prefix_conn+i);
 			self.currConnections.push(Obj);			
