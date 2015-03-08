@@ -3,6 +3,15 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    connect: {
+        server: {
+            options: {
+                port: 9001,
+                base: './',
+                keepalive: true
+            }
+        }
+    },
     jshint: {
       // define the files to lint
       files: [
@@ -18,8 +27,8 @@ module.exports = function(grunt) {
       dist: {
         // the files to concatenate
         src: [
-      'js/app.js',
-      'js/viewModel.js'
+        'js/app.js',
+        'js/viewModel.js'
         ],
         // the location of the resulting JS file
         dest: 'build/concated_files.js'
@@ -39,6 +48,29 @@ module.exports = function(grunt) {
       files: ['js/formValidatorTest.js']
     },
     */
+   concat_css: {
+    options: {
+      // Task-specific options go here. 
+    },
+    all: {
+        src: [
+        'bower_components/building-blocks/style/buttons.css',
+        'bower_components/building-blocks/style/headers.css',
+        'bower_components/building-blocks/style/input_areas.css',
+        'bower_components/building-blocks/style/status.css',
+        'bower_components/building-blocks/style_unstable/drawer.css',
+        'bower_components/building-blocks/style_unstable/lists.css',
+        'bower_components/building-blocks/style/switches.css',
+        'bower_components/building-blocks/icons/styles/action_icons.css',
+        'bower_components/building-blocks/icons/styles/settings_icons.css',
+        'bower_components/building-blocks/transitions.css',
+        'bower_components/building-blocks/util.css',
+        'bower_components/building-blocks/fonts.css',
+        'bower_components/building-blocks/cross_browser.css'
+        ],
+        dest: 'build/gaia.css'
+      },
+    },
     cssmin: {
       css: {
         src: 'css/app.css',
@@ -78,7 +110,6 @@ module.exports = function(grunt) {
             'bower_components/building-blocks/cross_browser.css',
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/moment/min/moment-with-locales.min.js',
-            'js/basil.min.js',
             'build/app.min.css',
             'build/app.min.js',
             'index.html'
@@ -112,6 +143,8 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-concat-css');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -120,6 +153,8 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task(s).
-  grunt.registerTask('default', ['concat','uglify','cssmin','htmlmin','manifest']);
+  grunt.registerTask('default', ['jshint','concat','uglify','cssmin','manifest','connect']);
+  grunt.registerTask('build', ['concat','uglify','concat_css','cssmin','htmlmin','manifest'])
+  grunt.registerTask('server', ['connect']);
 
 };

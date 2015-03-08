@@ -1,11 +1,13 @@
-SBB/CFF/FSS - Train Schedule WebApp, 
+# SBB/CFF/FSS - Train Schedule WebApp, 
 
-based on [transport.opendata.ch](http://transport.opendata.ch), [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com/building-blocks) & [moment.js](http://momentjs.com) written in plain [Vanilla](http://gomakethings.com/ditching-jquery-for-vanilla-js/)
+Based on [transport.opendata.ch](http://transport.opendata.ch), [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com/building-blocks) & [moment.js](http://momentjs.com) written in plain [Vanilla](http://gomakethings.com/ditching-jquery-for-vanilla-js/).
 
-it's a WebApp optimzed for [Firefox OS](https://www.mozilla.org/de/firefox/os/) but [will also work on Android](https://hacks.mozilla.org/2014/06/firefox-os-apps-run-on-android/) some day (I hope so)
+It's a WebApp optimzed for [Firefox OS](https://www.mozilla.org/de/firefox/os/) but [will also work on Android](https://hacks.mozilla.org/2014/06/firefox-os-apps-run-on-android/) some day (I hope so).
+
+Goal was to build an app so fast and small that's possible.
 
 
-# Status
+### Status
 
 * 05.10.2014 - v0.1/2 - ready to take off (^_^) 
 * 06.10.2014 - added passlists in detailView
@@ -17,29 +19,32 @@ it's a WebApp optimzed for [Firefox OS](https://www.mozilla.org/de/firefox/os/) 
 * 30.10.2014 - removed basil.js
 * 07.11.2014 - removed basil.js
 
-# install
+### Install
 
 ```
 npm install
 bower install
 grunt
-node server.js
 ```
 click on http://127.0.0.1:8080
 
-# Todo
+### Todo
 
-* passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
-* replace jQuery
-* show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
-* autofill
+* T-1 replace jQuery
+* T-2 replace moment.js with fetcha
+* T-3 passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
+* T-4 show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
+* T-5 solve css_concate problem with gaia libraries
+* T-6 autofill
 
-# Bugs
+### Bugs
 
-* nach neuer suche kann zwar ein favorit erstellt werden, es speichert aber daten der vorherigen suche
+* T-7 nach neuer suche kann zwar ein favorit erstellt werden, es speichert aber daten der vorherigen suche
+* T-8 form toggle bug
 
-# Wishlist
+### Wishlist
 
-* vibrations alarm/reminder für ausgewählte verbindung
-* translation, fr/it
+* T-9 vibrations alarm/reminder für ausgewählte verbindung
+* T-10 translation, fr/it
+* T-11 color switcher
 
