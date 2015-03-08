@@ -1,4 +1,4 @@
-# SBB/CFF/FSS - Train Schedule WebApp, 
+# SBB/CFF/FSS - Train Schedule WebApp
 
 Based on [transport.opendata.ch](http://transport.opendata.ch), [Mozilla buildingfirefoxos.com](http://buildingfirefoxos.com/building-blocks) & [moment.js](http://momentjs.com) written in plain [Vanilla](http://gomakethings.com/ditching-jquery-for-vanilla-js/).
 
@@ -26,12 +26,12 @@ npm install
 bower install
 grunt
 ```
-click on http://127.0.0.1:8080
+click on http://127.0.0.1:9001
 
 ### Todo
 
 * T-1 replace jQuery
-* T-2 replace moment.js with fetcha
+* T-2 replace moment.js with [fecha](https://github.com/taylorhakes/fecha)
 * T-3 passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
 * T-4 show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
 * T-5 solve css_concate problem with gaia libraries

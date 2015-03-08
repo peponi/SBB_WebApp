@@ -154,7 +154,8 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint','concat','uglify','cssmin','manifest','connect']);
-  grunt.registerTask('build', ['concat','uglify','concat_css','cssmin','htmlmin','manifest'])
+  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('build', ['concat','uglify','concat_css','cssmin','htmlmin','manifest']);
   grunt.registerTask('server', ['connect']);
 
 };

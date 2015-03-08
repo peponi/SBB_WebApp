@@ -1,12 +1,12 @@
-v = new viewModel(),
+var v = new viewModel(),
 d = document;
 
 function search()
 {
-	var form 	= document.querySelector("form"),
-		from 	= form.querySelector("[name=from]").value,
-		to 		= form.querySelector("[name=to]").value;
-		time 	= form.querySelector("[name=time]").value,
+	var form	= document.querySelector("form"),
+		from	= form.querySelector("[name=from]").value,
+		to		= form.querySelector("[name=to]").value;
+		time	= form.querySelector("[name=time]").value,
 		isArrivalTime = form.querySelector("[name=isArrivalTime]").checked;
 
 	if (!from && !to)
@@ -17,9 +17,9 @@ function search()
 
 	console.log(from,to,time,"isArrivalTime="+isArrivalTime);
 
-	v.search(from,to,time,isArrivalTime)
+	v.search(from,to,time,isArrivalTime);
 	return 1;
-};
+}
 
 // toggle form area and search while form is closing
 document.querySelector('[data-show-form]').addEventListener("click",function(e)
@@ -62,12 +62,12 @@ function trigger(e)
 
 document.querySelector("[name=to]").addEventListener('keydown', function(e)
 {
-	 trigger(e);
+	trigger(e);
 });
 
 document.querySelector("[name=from]").addEventListener('keydown', function(e)
 {
-	 trigger(e);
+	trigger(e);
 });
 
 // show connection detail
@@ -108,15 +108,15 @@ document.querySelector("nav a[data-fav-current-search]").addEventListener('click
 	{
 		v.setStatus("favorit has been deleted");
 	}
-  })
+  });
 });
 
 // load this connection
 [].forEach.call(document.querySelectorAll('[data-load-connections]'), function(el) {
   el.addEventListener('click', function(e) {
     v.loadFavorit(e.target.id);
-  })
-})
+  });
+});
 
 document.querySelector("[name=isArrivalTime]").addEventListener("change", function(e)
 {
