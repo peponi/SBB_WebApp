@@ -26,10 +26,7 @@ var viewModel = function()
 					ret.push(k);
 				}
 
-				return ret.filter(function(c){return c.substring(0,prefix.length) == prefix;}); 
-
-				// Object.keys dosen't work on my ZTE Open - FFOS 1.2
-				//return Object.keys(l).filter(function(c){return c.substring(0,prefix.length) == prefix}); 
+				return ret.filter(function(c){return c.substring(0,prefix.length) == prefix;});  
 			}
 		};
 
@@ -125,7 +122,7 @@ var viewModel = function()
 			}
 
 			html=parser.parseFromString('<div class="passlist">'+html+'</div>', "text/html");
-			
+
 			sectionPassList.appendChild(d.importNode(html.getElementsByTagName("div")[0], true));
 		}
 	};
@@ -206,13 +203,13 @@ var viewModel = function()
 		var keys = stor.getKeysFor(store_prefix_conn); 
 
 		// remove last connections
-		for (var i = keys.length; i--;)
+		for (var i = keys.length;i ;i--)
 		{
 			stor.rm(store_prefix_conn+i);   
 		}
 
 		// save new connections
-		for (i = self.currConnections.length - 1; i--; ) 
+		for (i = self.currConnections.length - 1;i ;i-- ) 
 		{
 			self.currConnections[i].id = i;
 			stor.set(store_prefix_conn+i, self.currConnections[i]);
@@ -227,7 +224,7 @@ var viewModel = function()
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
-		for (var i = keys.length; i--;)
+		for (var i = keys.length;i ;i--)
 		{
 			var Obj = stor.get(store_prefix_conn+i);
 			self.currConnections.push(Obj);			
