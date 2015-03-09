@@ -31,8 +31,9 @@ click on http://127.0.0.1:9001
 
 ### Todo
 
+* T-14 favorits miss search parameters
 * T-2 replace moment.js with [fecha](https://github.com/taylorhakes/fecha)
-* T-3 passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
+* T-3 passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android)
 * T-4 show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
 * T-5 solve css_concate problem with gaia libraries
 * T-6 autofill
