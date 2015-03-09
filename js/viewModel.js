@@ -102,7 +102,7 @@ var viewModel = function()
 			
 		if(sectionPassList.querySelector("div.passlist") !== null)
 		{
-			$(sectionPassList.querySelector("div.passlist")).slideToggle();
+			sectionPassList.querySelector("div.passlist").classList.toggle("show");
 		}
 		else
 		{		
@@ -165,7 +165,7 @@ var viewModel = function()
 
 		while(connections.firstChild) connections.removeChild(connections.firstChild);
 
-		for (var j = self.currConnections.length, i = 0; i < j; i++) {
+		for (var j = self.currConnections.length, i = 1; i < j; i++) {
 			var Obj = self.currConnections[i],
 				c	= connection.cloneNode(true);
 
@@ -223,7 +223,7 @@ var viewModel = function()
 		console.log("loadLastConnections ...");
 		self.currConnections = [];
 
-		for (var i = 0, j = keys.length; i < j; i++)
+		for (var i = 0, j = keys.length; i <= j; i++)
 		{
 			var Obj = stor.get(store_prefix_conn+i);
 			self.currConnections.push(Obj);	

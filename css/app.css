@@ -321,7 +321,16 @@ label.pack-switch input ~ span:after
   text-decoration: none;
 }
 
-div.passlist {margin: 10px 0px;}
+div.passlist 
+{
+  margin: 10px 0px;
+  display:none;
+}
+
+div.passlist.show
+{
+  display:block;
+}
 div.passlist > div
 {
   border-bottom: 1px solid #ddd;
@@ -329,6 +338,11 @@ div.passlist > div
 }
 
 /* detailView */
+
+[data-type="list"] aside.pack-end
+{
+  height: 26px;
+}
 
 .f-14 h2 {font-size: 14px;}
 

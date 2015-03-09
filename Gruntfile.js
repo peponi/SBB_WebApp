@@ -108,7 +108,6 @@ module.exports = function(grunt) {
             'bower_components/building-blocks/util.css',
             'bower_components/building-blocks/fonts.css',
             'bower_components/building-blocks/cross_browser.css',
-            'bower_components/jquery/dist/jquery.min.js',
             'bower_components/moment/min/moment-with-locales.min.js',
             'build/app.min.css',
             'build/app.min.js',

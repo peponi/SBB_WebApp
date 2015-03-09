@@ -1,6 +1,28 @@
 var v = new viewModel(),
 d = document;
 
+function on(elSelector, eventName, selector, fn) {
+    var element = document.querySelector(elSelector);
+
+    element.addEventListener(eventName, function(event) {
+        var possibleTargets = element.querySelectorAll(selector);
+        var target = event.target;
+
+        for (var i = 0, l = possibleTargets.length; i < l; i++) {
+            var el = target;
+            var p = possibleTargets[i];
+
+            while(el && el !== element) {
+                if (el === p) {
+                    return fn.call(p, event);
+                }
+
+                el = el.parentNode;
+            }
+        }
+    });
+}
+
 function search()
 {
 	var form	= document.querySelector("form"),
@@ -71,13 +93,23 @@ document.querySelector("[name=from]").addEventListener('keydown', function(e)
 });
 
 // show connection detail
-$("body").on("click",'[data-target=detail-view] a',function(e)
+on("body","click",'[data-target=detail-view] a',function(e)
 {
-	var id = $(e.target).parents('a').data("id");
+	var id;
+
+	if(e.target.tagName != "P")
+	{
+		id = e.target.parentNode.parentNode.dataset.id;
+	}
+	else
+	{
+		id = e.target.parentNode.dataset.id;
+	}
+
 	v.showDetail(id);
 });
 
-$("#sections").on("click",'[data-show-passlist] h2',function(e)
+on("#sections","click",'[data-show-passlist] h2',function(e)
 {
 	v.togglePasslist(e.target.parentNode.dataset.id);
 });

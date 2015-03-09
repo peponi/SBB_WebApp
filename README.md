@@ -18,6 +18,7 @@ Goal was to build an app so fast and small that's possible.
 * 29.10.2014 - added key down search event, sort searched result
 * 30.10.2014 - removed basil.js
 * 07.11.2014 - removed basil.js
+* 09.03.2015 - T-1 removed jQuery
 
 ### Install
 
@@ -30,7 +31,6 @@ click on http://127.0.0.1:9001
 
 ### Todo
 
-* T-1 replace jQuery
 * T-2 replace moment.js with [fecha](https://github.com/taylorhakes/fecha)
 * T-3 passing to [android](https://developer.mozilla.org/en-US/Marketplace/Options/Open_web_apps_for_android
 * T-4 show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
@@ -41,10 +41,12 @@ click on http://127.0.0.1:9001
 
 * T-7 nach neuer suche kann zwar ein favorit erstellt werden, es speichert aber daten der vorherigen suche
 * T-8 form toggle bug
+* T-13 counting bug in viewModel:168
 
 ### Wishlist
 
 * T-9 vibrations alarm/reminder für ausgewählte verbindung
 * T-10 translation, fr/it
 * T-11 color switcher
+* T-12 OpenStreetMap
 
