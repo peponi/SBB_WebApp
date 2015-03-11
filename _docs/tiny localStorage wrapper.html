@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://gist.github.com/peponi/b561f927626036bcea83 -->
+<html class=""><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>tiny localStorage wrapper</title>
+
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="3E11oEhaGRi7wnZY+P+j7U1hM6C4AKI80KBcRKuEX3kNA6zdnC504LSnsTtKBH+c/USzvLnFokyXQW0RdXS/TQ==" name="csrf-token">
+  <meta name="viewport" content="width=960">
+
+
+    <link type="text/plain" rel="author" href="https://github.com/humans.txt">
+    <meta content="gist" name="octolytics-app-id"><meta content="collector.githubapp.com" name="octolytics-host"><meta content="collector-cdn.github.com" name="octolytics-script-host"><meta content="D5908201:5262:BA43198:54FCAF39" name="octolytics-dimension-request_id"><meta content="1695282" name="octolytics-actor-id"><meta content="peponi" name="octolytics-actor-login"><meta content="2cbfa2207eecec10dd1de1036a62cb58e5b606e5a30294d5237b00131ed4a8fd" name="octolytics-actor-hash">
+  <link rel="assets" href="https://gist-assets.github.com/">
+  <link rel="zeroclipboard-assets" href="https://gist-assets.github.com/assets/zeroclipboard/dist/ZeroClipboard-aeb54c213f0d09883fed5a0947132da9.swf">
+  <link rel="editor-assets" href="https://gist-assets.github.com/assets/editor-cac2d04c8f22b5ffe38f6bc97dc54f54.js">
+  <link rel="mount-point" href="https://gist.github.com/">
+
+
+  <link href="https://gist-assets.github.com/assets/application-0622f4c051642df21ab90d3eb66a52b8.css" media="screen, print" rel="stylesheet">
+  <script async="" src="./tiny localStorage wrapper_files/analytics.js"></script><script src="./tiny localStorage wrapper_files/application-9441728a90e54c65c8d4079bfabcbff5.js"></script><style type="text/css"></style>
+
+      <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@github">
+  <meta property="og:title" content="peponi/README.md">
+  <meta property="og:type" content="githubog:gist">
+  <meta property="og:url" content="https://gist.github.com/peponi/b561f927626036bcea83">
+  <meta property="og:image" content="https://avatars0.githubusercontent.com/u/1695282?s=140">
+  <meta property="og:site_name" content="GitHub Gists">
+  <meta property="og:description" content="tiny localStorage wrapper - Gist is a simple way to share snippets of text and code with others.">
+  <meta name="description" content="tiny localStorage wrapper - Gist is a simple way to share snippets of text and code with others.">
+
+
+<script src="./tiny localStorage wrapper_files/api.js"></script><style type="text/css">.fancybox-margin{margin-right:0px;}</style></head>
+
+<body class="logged_in " data-plan="" data-gclp-initialized="true" data-gistbox-initialized="true" cz-shortcut-listen="true">
+
+  <div id="wrapper">
+    
+
+    <div id="header" class="header header-logged-in">
+      <div class="container clearfix">
+        <a class="header-logo-wordmark" href="https://gist.github.com/">
+          <span class="octicon octicon-logo-github"></span>
+          <span class="octicon-logo octicon-logo-gist"></span>
+        </a>
+
+        <div class="divider-vertical"></div>
+        <div class="topsearch">
+  <form id="top_search_form" action="https://gist.github.com/search" data-pjax-remote="push" accept-charset="UTF-8" abineguid="F6D17EFB37284A559BCA93D8A01BAE36">
+    <div class="search">
+      <input type="text" class="search js-search js-navigation-enable js-quick-search" name="q" placeholder="Search…" data-hotkey="/" autocomplete="off" autocorrect="off" value="">
+
+      <div class="search-results js-search-results js-navigation-container"></div>
+    </div>
+    <div class="divider-vertical"></div>
+  </form>
+  <ul class="top-nav">
+    <li class="explore"><a href="https://gist.github.com/discover">All Gists</a></li>
+  </ul>
+</div>
+
+        <ul id="user-links">
+  <li>
+  <a href="https://gist.github.com/peponi" class="name">
+    <img src="./tiny localStorage wrapper_files/1695282" width="20" height="20"> peponi
+  </a>
+  </li>
+  <li>
+  <a href="https://gist.github.com/" id="new_gist" class="tooltipped tooltipped-s" aria-label="New Gist">
+    <span class="octicon octicon-gist-new"></span>
+  </a>
+  </li>
+  <li>
+  <a href="https://github.com/" class="tooltipped tooltipped-s" aria-label="Go to GitHub" data-skip-pjax="">
+    <span class="octicon octicon-octoface"></span>
+  </a>
+  </li>
+  <li>
+  <form action="https://gist.github.com/logout" method="post">
+    <input name="authenticity_token" type="hidden" value="EI6Eh66GhUsT/+Hcvfzt5hHjWglDIo0kCUuqkW5Ukk7BwF36evLosxyaJr8PBzGXocbaFULnjVROqpvEsKRyeg==">
+    <button class="logout-button tooltipped tooltipped-s" id="logout" type="submit" aria-label="Sign out">
+      <span class="octicon octicon-log-out"></span>
+    </button>
+  </form>
+  </li>
+</ul>
+
+      </div>
+    </div>
+
+    <div class="site-content" id="js-pjax-container" data-pjax-container="">
+      <div id="js-flash-container" class="site-container js-site-container" data-url="/peponi/b561f927626036bcea83">
+  
+  
+
+<meta content="true" name="octolytics-dimension-public"><meta content="20161985" name="octolytics-dimension-gist_id"><meta content="b561f927626036bcea83" name="octolytics-dimension-gist_name"><meta content="false" name="octolytics-dimension-anonymous"><meta content="1695282" name="octolytics-dimension-owner_id"><meta content="peponi" name="octolytics-dimension-owner_login"><meta content="false" name="octolytics-dimension-forked">
+
+<div class="pagehead repohead">
+  <div class="container">
+    <div class="title-actions-bar">
+      <ul class="pagehead-actions">
+            <li>
+              <div class="gist-advanced-options select-menu js-menu-container js-select-menu">
+
+                <span class="minibutton select-menu-button js-menu-target">
+                  <span class="octicon octicon-gear"></span>
+                </span>
+
+                <div class="select-menu-modal-holder js-menu-content js-navigation-container js-select-menu-pane">
+                  <div class="select-menu-modal">
+                    <div class="select-menu-header">
+                      <span class="select-menu-title">Advanced options</span>
+                      <span class="octicon octicon-x js-menu-close"></span>
+                    </div> <!-- /.select-menu-header -->
+
+                    <div class="select-menu-list">
+
+                      <div class="select-menu-item js-navigation-item">
+                        <div class="select-menu-item-text js-navigation-open">
+                          <a href="https://gist.github.com/peponi/b561f927626036bcea83/report" data-method="post" data-skip-pjax="">Report as abuse</a>
+                        </div>
+                      </div> <!-- /.select-menu-item -->
+
+                    </div> <!-- /.select-menu-list -->
+
+                  </div> <!-- /.select-menu-modal -->
+                </div> <!-- /.select-menu-modal-holder -->
+              </div> <!-- /.select-menu -->
+            </li>
+          <li>
+            <a href="https://gist.github.com/peponi/b561f927626036bcea83/edit" class="minibutton" rel="nofollow"><span class="octicon octicon-pencil"></span>Edit</a>
+          </li>
+          <li>
+            <form action="./tiny localStorage wrapper_files/tiny localStorage wrapper.html" data-pjax-remote="push" data-remote-submit="" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+              <input name="_method" type="hidden" value="delete">
+              <input name="authenticity_token" type="hidden" value="rhn7Pl/O8SD9pXb8s/wkqbKHMmEuDR4uZwRxknwAFLJ/VyJDi7qc2PLAsZ8BB/jYAqKyfS/IHl4g5UDHovD0hg==">
+              <button class="minibutton danger js-delete-button" type="submit"><span class="octicon octicon-trashcan"></span>Delete</button>
+            </form>
+          </li>
+          <li>
+              <form action="https://gist.github.com/peponi/b561f927626036bcea83/star" data-pjax-remote="replace" method="post" accept-charset="UTF-8">
+                <input name="authenticity_token" type="hidden" value="enKVcV6zxnStr6GYtgOyOZRUyeq271b4I+8uVJE0DKarPEwMiserjKLKZvsE+G5IJHFJ9rcqVohkDh8BT8Tskg==">
+                <button class="minibutton with-count" type="submit"><span class="octicon octicon-star"></span>Star</button>
+                  <span class="social-count">0</span>
+              </form>
+          </li>
+
+      </ul>
+      <h1 itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="entry-title ">
+  <div class="meta">
+    <div class="gist-author">
+      <img src="./tiny localStorage wrapper_files/1695282" width="26" height="26">
+        <span class="author vcard">
+            <span itemprop="title"><a href="https://gist.github.com/peponi">peponi</a></span>
+        </span> /
+      <strong><a href="./tiny localStorage wrapper_files/tiny localStorage wrapper.html" class="js-current-repository">README.md</a></strong>
+    </div>
+    <div class="gist-timestamp">
+        <span class="datetime">Created <time datetime="2015-03-08T20:20:37Z" is="relative-time" title="8. März 2015 21:20 MEZ">38 seconds ago</time></span>
+    </div>
+</div></h1>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="gist js-gist-container gist-with-sidebar with-full-navigation" data-version="11a15aea61c861755f4d03f9dd1fd9d797ac63fe" data-created="false" data-updated="false">
+
+      <div class="gist-sidebar clearfix">
+  <div class="sunken-menu vertical-right repo-nav js-repo-nav js-repository-container-pjax js-octicon-loaders">
+    <div class="sunken-menu-contents">
+      <ul class="sunken-menu-group">
+        <li class="tooltipped tooltipped-w" aria-label="Code">
+          <a aria-label="Code" class="sunken-menu-item selected" data-pjax="true" href="./tiny localStorage wrapper_files/tiny localStorage wrapper.html">
+            <span class="octicon octicon-code"></span> <span class="full-word">Code</span>
+            <img alt="" class="mini-loader" height="16" src="./tiny localStorage wrapper_files/octocat-spinner-32-ad13d0fd1814c3fda3b5018da94432ea.gif" width="16">
+</a>        </li>
+
+          <li class="tooltipped tooltipped-w" aria-label="Revisions">
+            <a aria-label="Revisions" class="sunken-menu-item" data-pjax="true" href="https://gist.github.com/peponi/b561f927626036bcea83/revisions">
+              <span class="octicon octicon-git-commit"></span> <span class="full-word">Revisions</span>
+              <img alt="" class="mini-loader" height="16" src="./tiny localStorage wrapper_files/octocat-spinner-32-ad13d0fd1814c3fda3b5018da94432ea.gif" width="16">
+              <span class="counter">1</span>
+</a>          </li>
+
+
+      </ul>
+    </div><!-- /.sunken-menu-group -->
+  </div><!-- /.sunken-menu-contents -->
+
+  <div class="only-with-full-nav" id="abId0.4433730093296617" abineguid="770CCFB6D09248A5839887A5ED4E2B7C">
+
+    <div class="embed-url open" style="display: block;" id="abId0.8565478392411023">
+      <h3><strong>Embed</strong> URL</h3>
+      <div class="clone-url-box" id="abId0.30420099943876266">
+        <input type="text" class="clone js-url-field" value="&lt;script src=&quot;https://gist.github.com/peponi/b561f927626036bcea83.js&quot;&gt;&lt;/script&gt;" readonly="readonly">
+        <span class="url-box-clippy">
+          <button aria-label="copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="&lt;script src=&quot;https://gist.github.com/peponi/b561f927626036bcea83.js&quot;&gt;&lt;/script&gt;" data-copied-hint="copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+        </span>
+      </div>
+    </div>
+    <p class="clone-options"></p>
+
+      
+<div class="clone-url open" data-protocol-type="http" data-url="https://gist.github.com/b561f927626036bcea83.git" id="abId0.38629815238527954">
+  <h3><strong>HTTPS</strong> clone URL</h3>
+  <div class="clone-url-box" id="abId0.005182873923331499">
+    <input type="text" class="clone url-field js-url-field" value="https://gist.github.com/b561f927626036bcea83.git" readonly="readonly">
+    <span class="url-box-clippy">
+      <button aria-label="copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="https://gist.github.com/b561f927626036bcea83.git" data-copied-hint="copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+  
+<div class="clone-url " data-protocol-type="ssh" data-url="git@gist.github.com:/b561f927626036bcea83.git" id="abId0.44425779418088496">
+  <h3><strong>SSH</strong> clone URL</h3>
+  <div class="clone-url-box" id="abId0.8372392666060477">
+    <input type="text" class="clone url-field js-url-field" value="git@gist.github.com:/b561f927626036bcea83.git" readonly="readonly">
+    <span class="url-box-clippy">
+      <button aria-label="copy to clipboard" class="js-zeroclipboard minibutton zeroclipboard-button" data-clipboard-text="git@gist.github.com:/b561f927626036bcea83.git" data-copied-hint="copied!" type="button"><span class="octicon octicon-clippy"></span></button>
+    </span>
+  </div>
+</div>
+
+
+<p class="clone-options">You can clone with
+      <a href="https://gist.github.com/peponi/b561f927626036bcea83#" class="js-clone-selector" data-skip-pjax="" data-protocol="http">HTTPS</a>
+      or <a href="https://gist.github.com/peponi/b561f927626036bcea83#" class="js-clone-selector" data-skip-pjax="" data-protocol="ssh">SSH</a>.
+</p>
+
+
+    <a aria-label="Download README.md as a zip file" class="minibutton sidebar-button" href="https://gist.github.com/peponi/b561f927626036bcea83/download" rel="nofollow" title="Download README.md as a zip file">
+      <span class="octicon octicon-cloud-download"></span>
+      Download Gist
+</a>  </div><!-- /.only-with-full-nav -->
+
+</div>
+
+
+    <div class="gist-content">
+          <div class="gist-meta">
+            <div class="gist-description">
+              <p></p><div>tiny localStorage wrapper</div><p></p>
+            </div>
+          </div>
+
+      <div class="files">
+            <div id="file-readme-md" class="file ">
+    <a href="./tiny localStorage wrapper_files/tiny localStorage wrapper.html" class="link-overlay">
+    <span class="link">View <strong>README.md</strong> <span class="octicon octicon-arrow-right"></span></span>
+  </a>
+  <div class="meta clearfix">
+    <div class="info file-name">
+      <span class="icon">
+        <b class="octicon octicon-gist"></b>
+      </span>
+      <a aria-label="Permalink" href="https://gist.github.com/peponi/b561f927626036bcea83#file-readme-md" class="tooltipped tooltipped-s permalink"><strong class="file-name js-selectable-text">README.md</strong></a>
+    </div>
+    <div class="actions">
+      <div class="button-group">
+        <a aria-label="View Raw" href="https://gist.github.com/peponi/b561f927626036bcea83/raw/1676f76840ea08c6f8ced915da50006487c977c8/README.md" data-skip-pjax="" class="minibutton raw-url js-view-raw">Raw</a>
+      </div>
+    </div>
+  </div>
+  <div class="suppressed">
+    <a class="js-show-suppressed-file">File suppressed. Click to show.</a>
+  </div>
+  <div class="blob-wrapper data type-markdown js-blob-data">
+    
+
+    <div class="readme context-loader-container context-loader-overlay">
+        <div class="context-loader">Sending Request…</div>
+      <article class="markdown-body js-file js-task-list-container is-task-list-enabled" data-task-list-update-url="https://gist.github.com/peponi/b561f927626036bcea83/file/README.md">
+        <p>usage:</p>
+
+<pre><code>var prefix = "person_";
+
+
+stor.set(prefix+id, Obj);
+stor.get(prefix+id);
+
+var keys = stor.getKeysFor(prefix);
+for (var i = keys.length; i--;) 
+{
+  stor.rm(prefix+i);  
+}
+</code></pre>
+
+<h1>
+<a name="user-content-localstorage" class="anchor" href="https://gist.github.com/peponi/b561f927626036bcea83#localstorage" rel="noreferrer"><span class="octicon octicon-link"></span></a>localStorage</h1>
+
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th align="center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>person_1</td>
+<td align="center">{ name: Fritz, age : 23}</td>
+</tr>
+<tr>
+<td>person_2</td>
+<td align="center">{ name: Heinz, age : 52}</td>
+</tr>
+<tr>
+<td>group_1</td>
+<td align="center">{ name: Styler }</td>
+</tr>
+<tr>
+<td>person_3</td>
+<td align="center">{ name: Peter, age : 16}</td>
+</tr>
+<tr>
+<td>group_2</td>
+<td align="center">{ name: Pusher }</td>
+</tr>
+</tbody>
+</table>
+
+          <textarea class="js-task-list-field">usage:
+
+```
+var prefix = "person_";
+
+
+stor.set(prefix+id, Obj);
+stor.get(prefix+id);
+
+var keys = stor.getKeysFor(prefix);
+for (var i = keys.length; i--;) 
+{
+  stor.rm(prefix+i);  
+}
+```
+
+# localStorage 
+
+| Key           | Value                    | 
+| ------------- |:------------------------:| 
+| person_1      | { name: Fritz, age : 23} | 
+| person_2      | { name: Heinz, age : 52} | 
+| group_1       | { name: Styler }         | 
+| person_3      | { name: Peter, age : 16} | 
+| group_2       | { name: Pusher }         | </textarea>
+      </article>
+    </div>
+
+
+
+  </div>
+</div>
+
+            <div id="file-localstorage_wrapper-js" class="file ">
+    <a href="./tiny localStorage wrapper_files/tiny localStorage wrapper.html" class="link-overlay">
+    <span class="link">View <strong>README.md</strong> <span class="octicon octicon-arrow-right"></span></span>
+  </a>
+  <div class="meta clearfix">
+    <div class="info file-name">
+      <span class="icon">
+        <b class="octicon octicon-gist"></b>
+      </span>
+      <a aria-label="Permalink" href="https://gist.github.com/peponi/b561f927626036bcea83#file-localstorage_wrapper-js" class="tooltipped tooltipped-s permalink"><strong class="file-name js-selectable-text">localStorage_wrapper.js</strong></a>
+    </div>
+    <div class="actions">
+      <div class="button-group">
+        <a aria-label="View Raw" href="https://gist.github.com/peponi/b561f927626036bcea83/raw/f7a57e680663b54ba57b049b53a74dd3349ddbc0/localStorage_wrapper.js" data-skip-pjax="" class="minibutton raw-url js-view-raw">Raw</a>
+      </div>
+    </div>
+  </div>
+  <div class="suppressed">
+    <a class="js-show-suppressed-file">File suppressed. Click to show.</a>
+  </div>
+  <div class="blob-wrapper data type-javascript js-blob-data">
+    
+
+
+
+    <div class="file-data">
+      <table cellpadding="0" cellspacing="0" class="lines highlight">
+        <tbody><tr>
+          <td class="line-numbers">
+            <span class="line-number" id="file-localstorage_wrapper-js-L1" rel="file-localstorage_wrapper-js-L1">1</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L2" rel="file-localstorage_wrapper-js-L2">2</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L3" rel="file-localstorage_wrapper-js-L3">3</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L4" rel="file-localstorage_wrapper-js-L4">4</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L5" rel="file-localstorage_wrapper-js-L5">5</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L6" rel="file-localstorage_wrapper-js-L6">6</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L7" rel="file-localstorage_wrapper-js-L7">7</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L8" rel="file-localstorage_wrapper-js-L8">8</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L9" rel="file-localstorage_wrapper-js-L9">9</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L10" rel="file-localstorage_wrapper-js-L10">10</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L11" rel="file-localstorage_wrapper-js-L11">11</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L12" rel="file-localstorage_wrapper-js-L12">12</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L13" rel="file-localstorage_wrapper-js-L13">13</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L14" rel="file-localstorage_wrapper-js-L14">14</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L15" rel="file-localstorage_wrapper-js-L15">15</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L16" rel="file-localstorage_wrapper-js-L16">16</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L17" rel="file-localstorage_wrapper-js-L17">17</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L18" rel="file-localstorage_wrapper-js-L18">18</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L19" rel="file-localstorage_wrapper-js-L19">19</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L20" rel="file-localstorage_wrapper-js-L20">20</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L21" rel="file-localstorage_wrapper-js-L21">21</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L22" rel="file-localstorage_wrapper-js-L22">22</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L23" rel="file-localstorage_wrapper-js-L23">23</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L24" rel="file-localstorage_wrapper-js-L24">24</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L25" rel="file-localstorage_wrapper-js-L25">25</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L26" rel="file-localstorage_wrapper-js-L26">26</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L27" rel="file-localstorage_wrapper-js-L27">27</span>
+            <span class="line-number" id="file-localstorage_wrapper-js-L28" rel="file-localstorage_wrapper-js-L28">28</span>
+          </td>
+          <td class="line-data">
+            <pre class="line-pre"><div class="line" id="file-localstorage_wrapper-js-LC1"><span class="pl-s">var</span> stor <span class="pl-k">=</span> {
+</div><div class="line" id="file-localstorage_wrapper-js-LC2">  <span class="pl-en">get</span> : <span class="pl-st">function</span>(<span class="pl-vpf">id</span>)
+</div><div class="line" id="file-localstorage_wrapper-js-LC3">  {
+</div><div class="line" id="file-localstorage_wrapper-js-LC4">  	<span class="pl-k">return</span> JSON.<span class="pl-s3">parse</span>(l.getItem(id));
+</div><div class="line" id="file-localstorage_wrapper-js-LC5">  },
+</div><div class="line" id="file-localstorage_wrapper-js-LC6">  <span class="pl-en">set</span> : <span class="pl-st">function</span>(<span class="pl-vpf">id</span>,<span class="pl-vpf">data</span>)
+</div><div class="line" id="file-localstorage_wrapper-js-LC7">  {
+</div><div class="line" id="file-localstorage_wrapper-js-LC8">  	<span class="pl-k">return</span> l.setItem(id, JSON.stringify(data) );
+</div><div class="line" id="file-localstorage_wrapper-js-LC9">  },
+</div><div class="line" id="file-localstorage_wrapper-js-LC10">  <span class="pl-en">rm</span> : <span class="pl-st">function</span>(<span class="pl-vpf">id</span>)
+</div><div class="line" id="file-localstorage_wrapper-js-LC11">  {
+</div><div class="line" id="file-localstorage_wrapper-js-LC12">  	l.removeItem(id);
+</div><div class="line" id="file-localstorage_wrapper-js-LC13">  },
+</div><div class="line" id="file-localstorage_wrapper-js-LC14">  <span class="pl-en">getKeysFor</span> : <span class="pl-st">function</span>(<span class="pl-vpf">prefix</span>)
+</div><div class="line" id="file-localstorage_wrapper-js-LC15">  {
+</div><div class="line" id="file-localstorage_wrapper-js-LC16">  	<span class="pl-s">var</span> ret <span class="pl-k">=</span> [];
+</div><div class="line" id="file-localstorage_wrapper-js-LC17">  
+</div><div class="line" id="file-localstorage_wrapper-js-LC18">  	<span class="pl-k">for</span> (<span class="pl-s">var</span> k <span class="pl-k">in</span> l){
+</div><div class="line" id="file-localstorage_wrapper-js-LC19">  	   ret.<span class="pl-s3">push</span>(k);
+</div><div class="line" id="file-localstorage_wrapper-js-LC20">  	}
+</div><div class="line" id="file-localstorage_wrapper-js-LC21">  
+</div><div class="line" id="file-localstorage_wrapper-js-LC22">  	<span class="pl-k">return</span> ret.filter(<span class="pl-st">function</span>(<span class="pl-vpf">c</span>){<span class="pl-k">return</span> c.<span class="pl-s3">substring</span>(<span class="pl-c1">0</span>,prefix.<span class="pl-sc">length</span>) <span class="pl-k">==</span> prefix}); 
+</div><div class="line" id="file-localstorage_wrapper-js-LC23">  }
+</div><div class="line" id="file-localstorage_wrapper-js-LC24">};
+</div><div class="line" id="file-localstorage_wrapper-js-LC25">&nbsp;
+</div><div class="line" id="file-localstorage_wrapper-js-LC26">&nbsp;
+</div><div class="line" id="file-localstorage_wrapper-js-LC27"><span class="pl-c">// minified - 271 bytes</span>
+</div><div class="line" id="file-localstorage_wrapper-js-LC28"><span class="pl-s">var</span> stor<span class="pl-k">=</span>{<span class="pl-en">get</span>:<span class="pl-st">function</span>(<span class="pl-vpf">t</span>){<span class="pl-k">return</span> JSON.<span class="pl-s3">parse</span>(l.getItem(t))},<span class="pl-en">set</span>:<span class="pl-st">function</span>(<span class="pl-vpf">t</span>,<span class="pl-vpf">r</span>){<span class="pl-k">return</span> l.setItem(t,JSON.stringify(r))},<span class="pl-en">rm</span>:<span class="pl-st">function</span>(<span class="pl-vpf">t</span>){l.removeItem(t)},<span class="pl-en">getKeysFor</span>:<span class="pl-st">function</span>(<span class="pl-vpf">t</span>){<span class="pl-s">var</span> r<span class="pl-k">=</span>[];<span class="pl-k">for</span>(<span class="pl-s">var</span> e <span class="pl-k">in</span> l)r.<span class="pl-s3">push</span>(e);<span class="pl-k">return</span> r.filter(<span class="pl-st">function</span>(<span class="pl-vpf">r</span>){<span class="pl-k">return</span> r.<span class="pl-s3">substring</span>(<span class="pl-c1">0</span>,t.<span class="pl-sc">length</span>)<span class="pl-k">==</span>t})}};
+</div></pre>
+          </td>
+        </tr>
+      </tbody></table>
+    </div>
+
+  </div>
+</div>
+
+
+        <div class="discussion-timeline js-quote-selection-container">
+
+          <div class="js-discussion">
+            
+          </div>
+
+          <div class="discussion-timeline-actions">
+              <div class="timeline-comment-wrapper timeline-new-comment js-comment-container">
+  <a href="https://gist.github.com/peponi"><img class="timeline-comment-avatar" src="./tiny localStorage wrapper_files/1695282" width="48" height="48"></a>
+
+  <form accept-charset="UTF-8" action="https://gist.github.com/peponi/b561f927626036bcea83/comments" class="js-new-comment-form js-comment-form" method="post"><div style="display:none"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="29ewo/AsAgANT4CWc9Lrp/D2lnC+2o5MlKf6HqYHYsoKmWneJFhv+AIqR/XBKTfWQNMWbL8fjjzTRstLePeC/g=="></div>
+    <div class="timeline-comment">
+      <input type="hidden" name="gist" value="20161985">
+
+      <div id="js-new-comment-form-actions">
+        
+<div class="js-previewable-comment-form previewable-comment-form write-selected" data-preview-url="/preview">
+  <div class="comment-form-head tabnav">
+    <ul class="tabnav-tabs">
+      <li><a href="https://gist.github.com/peponi/b561f927626036bcea83#comment_body_162_write_bucket" class="tabnav-tab write-tab js-write-tab selected" data-skip-pjax="">Write</a></li>
+      <li><a href="https://gist.github.com/peponi/b561f927626036bcea83#comment_body_162_preview_bucket" class="tabnav-tab preview-tab js-preview-tab" data-skip-pjax="">Preview</a></li>
+    </ul>
+    <span class="tabnav-right">
+      <a class="tabnav-widget text tabnav-extras" href="https://help.github.com/articles/github-flavored-markdown" target="_blank">
+        <span class="octicon octicon-markdown"></span>
+        Parsed as Markdown
+      </a>
+      
+<a href="https://gist.github.com/peponi/b561f927626036bcea83#fullscreen_comment_body_162" class="enable-fullscreen js-enable-fullscreen tooltipped-n
+  tabnav-widget text tabnav-extras">
+  <span class="octicon octicon-screen-full"></span>
+  Edit in fullscreen
+</a>
+
+
+    </span>
+  </div>
+
+
+  <div id="comment_body_162_write_bucket" class="write-content js-write-bucket ">
+    <textarea name="comment[body]" tabindex="1" id="comment_body_162" placeholder="Leave a comment" class="comment-form-textarea js-comment-field js-size-to-fit js-quote-selection-target input-with-fullscreen-icon" data-suggester="comment_body_162_suggestions" required=""></textarea>
+
+    
+
+  </div>
+  <div id="comment_body_162_preview_bucket" class="preview-content js-preview-bucket">
+    <div class="comment-body markdown-body  js-comment-body">
+    </div>
+  </div>
+
+
+  <div class="suggester-container">
+    <div class="suggester js-navigation-container" id="comment_body_162_suggestions" data-url="/peponi/b561f927626036bcea83/suggestions">
+    </div>
+  </div>
+</div>
+
+        <div class="form-actions">
+          <button type="submit" class="button primary js-comment-submit" tabindex="2" data-disable-with="" data-disable-invalid="" disabled="">
+            Comment
+          </button>
+        </div>
+      </div>
+    </div>
+</form></div>
+  
+
+          </div>
+        </div><!-- /.discussion-timeline -->
+      </div><!-- /.gist-content -->
+    </div>
+  </div>
+</div><!-- /.container -->
+
+  <div class="context-overlay"></div>
+</div>
+
+    </div>
+    <div class="slow-loading-overlay"></div>
+  </div>
+
+  <div id="ajax-error-message" class="flash flash-error">
+    <div class="container">
+      <span class="octicon octicon-alert"></span>
+      Something went wrong with that request. Please try again.
+      <a href="https://gist.github.com/peponi/b561f927626036bcea83#" class="octicon octicon-x ajax-error-dismiss"></a>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="container">
+  <div class="site-footer">
+    <ul class="site-footer-links right">
+      <li><a href="https://status.github.com/">Status</a></li>
+      <li><a href="http://developer.github.com/">API</a></li>
+      <li><a href="https://github.com/blog">Blog</a></li>
+      <li><a href="https://github.com/about">About</a></li>
+
+    </ul>
+
+    <a href="https://gist.github.com/">
+      <span class="mega-octicon octicon-mark-github" title="GitHub "></span>
+    </a>
+
+    <ul class="site-footer-links">
+      <li>© 2015 <span title="0.03311s from github-fe102-cp1-prd.iad.github.net">GitHub</span>, Inc.</li>
+        <li><a href="https://github.com/site/terms">Terms</a></li>
+        <li><a href="https://github.com/site/privacy">Privacy</a></li>
+        <li><a href="https://github.com/security">Security</a></li>
+        <li><a href="https://github.com/contact">Contact</a></li>
+    </ul>
+  </div><!-- /.site-footer -->
+</div><!-- /.container -->
+
+  </footer>
+
+  <div class="fullscreen-overlay js-fullscreen-overlay" id="fullscreen_overlay">
+  <div class="fullscreen-container js-fullscreen-container">
+    <div class="textarea-wrap">
+      <textarea name="fullscreen-contents" id="fullscreen-contents" class="fullscreen-contents js-fullscreen-contents" placeholder="" data-suggester="fullscreen_suggester"></textarea>
+        <div class="suggester-container">
+            <div class="suggester fullscreen-suggester js-navigation-container" id="fullscreen_suggester" data-url="/peponi/b561f927626036bcea83/suggestions">
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="fullscreen-sidebar">
+    <a href="https://gist.github.com/peponi/b561f927626036bcea83#" class="exit-fullscreen js-exit-fullscreen tooltipped tooltipped-w" aria-label="Exit Zen Mode">
+      <span class="mega-octicon octicon-screen-normal"></span>
+    </a>
+    <a href="https://gist.github.com/peponi/b561f927626036bcea83#" class="theme-switcher js-theme-switcher tooltipped tooltipped-w" aria-label="Switch themes">
+      <span class="octicon octicon-color-mode"></span>
+    </a>
+  </div>
+</div>
+
+
+
+
+<form id="gclp-frame-form" target="gclp-frame" method="post" style="display: none;"></form><div id="chrome_websiteIP" class="chrome_websiteIP_right">192.30.252.142</div></body></html>
