@@ -37,6 +37,7 @@ click on http://127.0.0.1:9001
 * T-4 show css [spiner/loader](http://projects.lukehaas.me/css-loaders/) icon while loading
 * T-5 solve css_concate problem with gaia libraries
 * T-6 autofill
+* T-15 delete attributes in xmlhttp.responseText they don't needed
 
 ### Bugs
 
@@ -50,4 +51,5 @@ click on http://127.0.0.1:9001
 * T-10 translation, fr/it
 * T-11 color switcher
 * T-12 OpenStreetMap
+* T-16 Gleisstörungen
 
