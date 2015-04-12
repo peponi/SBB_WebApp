@@ -47,6 +47,7 @@ i.i-clock
   background-image: url(../images/clock.png);  
   top: 37px;
 }
+#connection i.i-clock{display:none;}
 i.i-walk
 {
   background-image: url(../images/walk.png);  

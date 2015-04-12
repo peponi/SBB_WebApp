@@ -1,5 +1,5 @@
-;(function(document, undefined) 
-{
+//;(function(document, undefined) 
+//{
 	'use strict';
 
 	var viewModel = function()
@@ -50,7 +50,7 @@
 			self.currObj = stor.get(store_prefix_conn+id);	
 			
 			var sections	= d.getElementById("sections"),
-				section		= d.getElementById("section").content;
+				section		= d.getElementById("section");
 
 			while(sections.firstChild) sections.removeChild(sections.firstChild);
 			
@@ -110,7 +110,7 @@
 			}
 			else
 			{		
-				for(i = 1; i < passList.length; i++)
+				for(var i = 1, p = passList.length; i < p; i++)
 				{
 					var station		= passList[i].station.name,
 						arrival		= moment(passList[i].arrival).format('H:mm'),
@@ -136,7 +136,7 @@
 			var time_s = (time)?'&time='+time : '';
 				time_s += (isArrivalTime)? '&isArrivalTime=1' : '';
 
-			xmlhttp = new XMLHttpRequest();
+			var xmlhttp = new XMLHttpRequest();
 			xmlhttp.open("GET",self.api+"connections?from="+from+"&to="+to+time_s+"&limit=6",false);
 			xmlhttp.onreadystatechange=function()
 			{
@@ -165,11 +165,12 @@
 			console.log("drawConnection ...");
 
 			var connections = d.getElementById("connections"),
-				connection	= d.getElementById("connection").content;
+				connection	= d.getElementById("connection");
 
 			while(connections.firstChild) connections.removeChild(connections.firstChild);
 
-			for (var j = self.currConnections.length, i = 1; i < j; i++) {
+			for (var j = self.currConnections.length, i = 1; i < j; i++) 
+			{
 				var Obj = self.currConnections[i],
 					c	= connection.cloneNode(true);
 
@@ -203,7 +204,7 @@
 		self.saveLastConnections = function()
 		{
 			//get all localStorage connection keys
-			var keys = stor.getKeysFor(store_prefix_conn); 
+			var keys = stor.getKeysFor(store_prefix_conn);
 
 			// remove last connections
 			for (var i = keys.length;i ;i--)
@@ -306,4 +307,4 @@
 		return self;
 	};
 
-})(document);
+//})(document);

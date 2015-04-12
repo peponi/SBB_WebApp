@@ -32,7 +32,7 @@
 	{
 		var form	= d.querySelector("form"),
 			from	= form.querySelector("[name=from]").value,
-			to		= form.querySelector("[name=to]").value;
+			to		= form.querySelector("[name=to]").value,
 			time	= form.querySelector("[name=time]").value,
 			isArrivalTime = form.querySelector("[name=isArrivalTime]").checked;
 
@@ -41,8 +41,6 @@
 			v.setStatus("please fill in the required data");
 			return 0;
 		}
-
-		console.log(from,to,time,"isArrivalTime="+isArrivalTime);
 
 		v.search(from,to,time,isArrivalTime);
 		return 1;
@@ -124,8 +122,9 @@
 	{
 		if(v.currConnections)
 		{
-			var from	= v.currConnections[0].from.location.name,
-				to		= v.currConnections[0].to.location.name;
+			console.log(v.currConnections)
+			var from	= v.currConnections[1].from.location.name,
+				to		= v.currConnections[1].to.location.name;
 
 			if(v.setFavorit(from,to))
 			{
