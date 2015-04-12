@@ -34,7 +34,7 @@
 			from	= form.querySelector("[name=from]").value,
 			to		= form.querySelector("[name=to]").value,
 			time	= form.querySelector("[name=time]").value,
-			isArrivalTime = form.querySelector("[name=isArrivalTime]").checked;
+			isArrivalTime = d.getElementById("isArrivalTime").value;
 
 		if (!from && !to)
 		{
@@ -152,11 +152,6 @@
 	  el.addEventListener('click', function(e) {
 	    v.loadFavorit(e.target.id);
 	  });
-	});
-
-	d.querySelector("[name=isArrivalTime]").addEventListener("change", function(e)
-	{
-		d.getElementById("time").innerHTML = (e.target.checked)? "arrival": "departure" ;	
 	});
 
 	d.querySelector('#btn-back').addEventListener ('click', function () {
