@@ -27,8 +27,8 @@ module.exports = function(grunt) {
       dist: {
         // the files to concatenate
         src: [
-        'js/app.js',
-        'js/viewModel.js'
+        'js/viewModel.js',
+        'js/app.js'
         ],
         // the location of the resulting JS file
         dest: 'build/concated_files.js'
@@ -87,7 +87,7 @@ module.exports = function(grunt) {
           processScripts : ['text/html']
         },
         files: {                                   // Dictionary of files
-          'build/index.html': 'index.html',        // 'destination': 'source'
+          'index.min.html': 'index.html',        // 'destination': 'source'
         }
       }
     },
@@ -108,10 +108,13 @@ module.exports = function(grunt) {
             'bower_components/building-blocks/util.css',
             'bower_components/building-blocks/fonts.css',
             'bower_components/building-blocks/cross_browser.css',
-            'bower_components/moment/min/moment-with-locales.min.js',
+            'bower_components/building-blocks/style/switches/images/switch/background_off.png',
+            'bower_components/building-blocks/style/switches/images/switch/background.png',
+            'bower_components/building-blocks/js/status.js',
+            'bower_components/moment/min/moment.min.js',
             'build/app.min.css',
             'build/app.min.js',
-            'index.html'
+            'index.min.html'
             ],
           network: ['*'],
           exclude: [],
@@ -154,7 +157,7 @@ module.exports = function(grunt) {
   // Default task(s).
   grunt.registerTask('default', ['jshint','concat','uglify','cssmin','manifest','connect']);
   grunt.registerTask('test', ['jshint']);
-  grunt.registerTask('build', ['concat','uglify','concat_css','cssmin','htmlmin','manifest']);
+  grunt.registerTask('build', ['concat','uglify','concat_css','cssmin','manifest']);
   grunt.registerTask('server', ['connect']);
 
 };

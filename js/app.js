@@ -1,5 +1,5 @@
-;(function(window, document, undefined) 
-{
+//;(function(window, document, undefined) 
+//{
 	'use strict';
 
 	var v = new viewModel(),
@@ -169,7 +169,7 @@
 	  window.applicationCache.addEventListener('updateready', function(e) {
 	    if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
 	      // Browser downloaded a new app cache.
-	      if (confirm('A new version of this site is available. Load it?')) {
+	      if (confirm('A new version of this App is available. Load it?')) {
 	        window.location.reload();
 	      }
 	    } else {
@@ -179,4 +179,4 @@
 
 	}, false);
 
-})(window, document);
+//})(window, document)

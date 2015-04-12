@@ -2,8 +2,9 @@
   	"version": "0.1",
 	"name": "SBBapp",
 	"description": "Swiss train schedule (SBB/CFS/FFS)",
-	"launch_path": "/index.html",
+	"launch_path": "/index.min.html",
 	"type": "web",
+	"size": "42kb",
 	"permissions": {
 		"storage": {
 			"description": "will store las searched connections"
