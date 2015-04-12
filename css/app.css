@@ -249,17 +249,10 @@ section[role="region"] > header:first-child > a:last-child .icon
 {
   background-color: #dc6a0e;
 }
-span.icon.active:before
+
+.action-icon.search:before
 {
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-}
-span.icon:before
-{
-  transform: rotate(270deg);
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
+  background-position: 1px -1230px;
 }
 
 label {color:#aaa;font-size:medium;;}
