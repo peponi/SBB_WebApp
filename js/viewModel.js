@@ -169,7 +169,7 @@
 
 			while(connections.firstChild) connections.removeChild(connections.firstChild);
 
-			for (var j = self.currConnections.length, i = 1; i < j; i++) 
+			for (var i = self.currConnections.length -1; i; i--) 
 			{
 				var Obj = self.currConnections[i],
 					c	= connection.cloneNode(true);
