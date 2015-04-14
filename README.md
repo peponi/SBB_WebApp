@@ -52,4 +52,5 @@ click on http://127.0.0.1:9001
 * T-11 color switcher
 * T-12 OpenStreetMap
 * T-16 Gleisstörungen
-
+* T-17 beim start checken ob netz da ist , wenn ja gleiche suche mit aktueller zeit noch mal ausführen
+* T-18 eine stunde vor, eine stunde zurück button
